@@ -1,0 +1,1 @@
+protoc.exe --proto_path=./common/src/main/protobuf/ --java_out=./common/src/main/java ./common/src/main/protobuf/messages.proto
