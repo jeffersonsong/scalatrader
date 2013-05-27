@@ -15,7 +15,8 @@ object ScalaZmqBuild extends Build {
     libraryDependencies ++= Seq(
       "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
       "com.typesafe" % "config" % typesafeConfigVersion
-    )
+    ),
+    organizationName := "net.sandipan"
   )
 
   lazy val root = Project(

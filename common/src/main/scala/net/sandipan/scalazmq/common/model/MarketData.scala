@@ -2,14 +2,11 @@ package net.sandipan.scalazmq.common.model
 
 import _root_.net.sandipan.scalazmq.common.protos.Messages
 import _root_.net.sandipan.scalazmq.common.serialization.Serializer
-import com.google.protobuf.ByteString
-import net.sandipan.scalazmq.common.services.TimeService
-import org.joda.time.LocalDateTime
 
 /**
  * Simplified MarketData
  */
-case class MarketData(symbol: String, bid: Double, ask: Double, volume: Int)
+case class MarketData(symbol: String, bid: Double, ask: Double, volume: Int, timestamp: String)
 
 object MarketData {
 
@@ -20,7 +17,7 @@ object MarketData {
         .setBid(md.bid)
         .setSymbol(md.symbol)
         .setVolume(md.volume)
-        .setTimestamp(LocalDateTime.now().toString) // TODO: Remove this indeterminism. Use a centralised timeService component.
+        .setTimestamp(md.timestamp)
         .build()
 
       proto.toByteString().toByteArray()

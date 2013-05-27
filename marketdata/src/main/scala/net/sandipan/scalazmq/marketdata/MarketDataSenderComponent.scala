@@ -5,6 +5,7 @@ import net.sandipan.scalazmq.common.model.MarketData
 import scala.collection.JavaConversions._
 import net.sandipan.scalazmq.marketdata.rng.RNG
 import net.sandipan.scalazmq.common.components.ConfigComponent
+import org.joda.time.LocalDateTime
 
 trait MarketDataSenderComponent {
   this: PublisherComponent[MarketData] with ConfigComponent =>
@@ -24,7 +25,8 @@ trait MarketDataSenderComponent {
       val (vol, s3) = RNG.positiveInt(s2)
       val (symbolIndex, s4) = RNG.positiveInt(s3)
       val symbol = symbols(symbolIndex % symbols.size)
-      val marketData = MarketData(symbol, bid, ask, vol)
+      val timestamp = LocalDateTime.now().toString()
+      val marketData = MarketData(symbol, bid, ask, vol, timestamp)
       Stream.cons(marketData, randomMarketDataStream(s4))
     }
 
