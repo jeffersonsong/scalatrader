@@ -4,13 +4,14 @@ import com.typesafe.config.Config
 import org.jeromq.ZMQ
 import net.sandipan.scalazmq.common.serialization.Serializer
 import net.sandipan.scalazmq.common.components.ConfigComponent
+import net.sandipan.scalazmq.common.util.HasLogger
 
 trait PublisherComponent[T] {
   this: ContextComponent with ConfigComponent =>
 
   def publisher: Publisher[T]
 
-  class Publisher[T] extends HasZmqSocket {
+  class Publisher[T] extends HasZmqSocket with HasLogger {
 
     private val socketAddr = config.getString(PublisherComponent.ADDRESS)
 
@@ -24,7 +25,7 @@ trait PublisherComponent[T] {
     def publish(data: T)(implicit serializer: Serializer[T]) {
       val result = socket.send(serializer.serialize(data))
       if (!result)
-        println("Oops.. unable to send %s".format(data))
+        log.error("Oops.. unable to send %s".format(data))
     }
 
   }

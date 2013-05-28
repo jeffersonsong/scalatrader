@@ -9,20 +9,24 @@ object ScalaZmqBuild extends Build {
   val jodaTimeVersion = "2.1"
   val googleProtoBufVersion = "2.5.0"
   val typesafeConfigVersion = "1.0.1"
+  val slf4jVersion = "1.7.5"
 
   override val settings = super.settings ++ Seq(
     scalaVersion := scalaVersionNo,
     libraryDependencies ++= Seq(
       "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
-      "com.typesafe" % "config" % typesafeConfigVersion
+      "com.typesafe" % "config" % typesafeConfigVersion,
+      "org.slf4j" % "slf4j-api" % slf4jVersion,
+      "org.slf4j" % "slf4j-simple" % slf4jVersion
+
     ),
     organizationName := "net.sandipan"
   )
 
   lazy val root = Project(
-    id = "scalazmq",
+    id = "scalazmq-root",
     base = file("."),
-    aggregate = Seq(zmq, marketdata, algo, tradereport, broker)
+    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker)
   )
 
   val zmq = Project(
@@ -53,9 +57,9 @@ object ScalaZmqBuild extends Build {
     dependencies = Seq(common, zmq)
   )
 
-  val broker = Project(
-    id = "broker",
-    base = file("./broker"),
+  val messagebroker = Project(
+    id = "messagebroker",
+    base = file("./messagebroker"),
     dependencies = Seq(common, zmq)
   )
 

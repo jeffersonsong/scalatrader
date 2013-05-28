@@ -6,6 +6,7 @@ import scala.collection.JavaConversions._
 import net.sandipan.scalazmq.marketdata.rng.RNG
 import net.sandipan.scalazmq.common.components.ConfigComponent
 import org.joda.time.LocalDateTime
+import net.sandipan.scalazmq.common.util.HasLogger
 
 trait MarketDataSenderComponent {
   this: PublisherComponent[MarketData] with ConfigComponent =>
@@ -13,7 +14,7 @@ trait MarketDataSenderComponent {
   def randomizationSeed: Long
   def marketDataSender: MarketDataSender
 
-  class MarketDataSender {
+  class MarketDataSender extends HasLogger {
 
     val sleepTime = config.getLong("sendInterval")
 
@@ -32,7 +33,7 @@ trait MarketDataSenderComponent {
 
     def startSendingData() {
       for (md <- randomMarketDataStream()) {
-        println("Publishing: %s".format(md))
+        log.info("Publishing: %s".format(md))
         publisher.publish(md)
         Thread.sleep(sleepTime)
       }

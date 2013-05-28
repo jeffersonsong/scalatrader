@@ -13,13 +13,13 @@ class ComponentRegistry(config: Config, context: Context)
   with ContextComponent
   with ConfigComponent {
 
-  override val configProvider = ConfigProvider(config)
+  override lazy val configProvider = ConfigProvider(config)
 
-  override val contextProvider = ContextProvider(context)
+  override lazy val contextProvider = ContextProvider(context)
 
-  override val publisher = new Publisher[MarketData]
+  override lazy val publisher = new Publisher[MarketData]
 
-  override val randomizationSeed = Random.nextLong()
+  override lazy val randomizationSeed = Random.nextLong()
 
-  override val marketDataSender = new MarketDataSender
+  override lazy val marketDataSender = new MarketDataSender
 }
