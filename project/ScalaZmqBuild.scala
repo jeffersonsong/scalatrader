@@ -1,3 +1,5 @@
+import de.johoop.jacoco4sbt._
+import de.johoop.jacoco4sbt.JacocoPlugin._
 import java.io.{InputStreamReader, BufferedReader, BufferedInputStream}
 import sbt._
 import Keys._
@@ -18,7 +20,6 @@ object ScalaZmqBuild extends Build {
       "com.typesafe" % "config" % typesafeConfigVersion,
       "org.slf4j" % "slf4j-api" % slf4jVersion,
       "org.slf4j" % "slf4j-simple" % slf4jVersion
-
     ),
     organizationName := "net.sandipan"
   )
@@ -26,7 +27,8 @@ object ScalaZmqBuild extends Build {
   lazy val root = Project(
     id = "scalazmq-root",
     base = file("."),
-    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker)
+    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker),
+    settings = Project.defaultSettings ++ jacoco.settings
   )
 
   val zmq = Project(

@@ -1,9 +1,9 @@
 package net.sandipan.scalazmq.algo
 
-import net.sandipan.scalazmq.common.model.{Trade, MarketData}
+import net.sandipan.scalazmq.common.model.{Signal, MarketData}
 
 trait Algorithm {
 
-  def provide(marketData: MarketData): Option[Trade]
+  def submit(marketData: MarketData): Signal
 
 }
