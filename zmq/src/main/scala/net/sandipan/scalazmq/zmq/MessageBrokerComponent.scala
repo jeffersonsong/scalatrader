@@ -22,12 +22,17 @@ trait MessageBrokerComponent {
      */
     def start() {
 
+      val xpubAddr = config.getString(MessageBrokerComponent.XPUB_ADDR)
+      val xsubAddr = config.getString(MessageBrokerComponent.XSUB_ADDR)
+
       log.info("Setting up message broker.")
 
-      if (xpubSocket.bind(config.getString(MessageBrokerComponent.XPUB_ADDR)) < 0)
+      log.debug("BIND to " + xpubAddr)
+      if (xpubSocket.bind(xpubAddr) < 0)
         throw new RuntimeException("Broker could not open XPUB")
 
-      if (xsubSocket.bind(config.getString(MessageBrokerComponent.XSUB_ADDR)) < 0)
+      log.debug("CONNECT to " + xsubAddr)
+      if (!xsubSocket.connect(xsubAddr))
         throw new RuntimeException("Broker could not open XSUB")
 
       val items = contextProvider.context.poller(2)
@@ -40,17 +45,16 @@ trait MessageBrokerComponent {
         items.poll()
 
         if (items.pollin(0)) {
-          log.info("Received a publish - brokering.")
+          log.debug("Received a subscription on the XPUB socket - brokering.")
           performBrokering(xpubSocket, xsubSocket)
         }
 
         if (items.pollin(1)) {
-          log.info("Received a subscription - brokering.")
+          log.debug("Received a publish on the XSUB socket - brokering.")
           performBrokering(xsubSocket, xpubSocket)
         }
 
       }
-
     }
 
     private def performBrokering(in: Socket, out: Socket) {
@@ -71,7 +75,6 @@ trait MessageBrokerComponent {
     }
 
   }
-
 }
 
 object MessageBrokerComponent {

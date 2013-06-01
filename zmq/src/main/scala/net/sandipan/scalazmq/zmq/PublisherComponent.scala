@@ -17,8 +17,8 @@ trait PublisherComponent[T] {
 
     override val socket = {
       val s = contextProvider.context.socket(ZMQ.PUB)
-      if (!s.connect(socketAddr))
-        throw new RuntimeException("Could not connect to ZMQ socket %s".format(socketAddr))
+      if (s.bind(socketAddr) < 0)
+        throw new RuntimeException("Could not BIND to ZMQ socket %s".format(socketAddr))
       s
     }
 

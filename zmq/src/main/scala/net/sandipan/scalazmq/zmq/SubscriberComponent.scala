@@ -4,20 +4,23 @@ import net.sandipan.scalazmq.common.serialization.Deserializer
 import net.sandipan.scalazmq.common.components.ConfigComponent
 import org.jeromq.ZMQ
 import org.jeromq.ZMQ.Socket
+import net.sandipan.scalazmq.common.util.HasLogger
 
 trait SubscriberComponent[T] {
   this: ContextComponent with ConfigComponent =>
 
   def subscription: Subscription
 
-  class Subscription extends HasZmqSocket {
+  class Subscription extends HasZmqSocket with HasLogger {
 
     lazy val address: String = config.getString("subscribeAddress")
 
     lazy val socket: Socket = {
-      val s = contextProvider.context.socket(ZMQ.XSUB)
+      log.debug("Connecting to %s".format(address))
+      val s = contextProvider.context.socket(ZMQ.SUB)
       if (!s.connect(address))
         throw new RuntimeException("Could not open ZMQ Socket to %s".format(address))
+      s.subscribe(Array(): Array[Byte])
       s
     }
 
