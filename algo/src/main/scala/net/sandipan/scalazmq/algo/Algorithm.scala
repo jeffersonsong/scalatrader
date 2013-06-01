@@ -4,6 +4,6 @@ import net.sandipan.scalazmq.common.model.{Signal, MarketData}
 
 trait Algorithm {
 
-  def submit(marketData: MarketData): Signal
+  def submit(marketData: MarketData): Option[Signal]
 
 }

@@ -1,7 +1,7 @@
 package net.sandipan.scalazmq.common.model
 
 import _root_.net.sandipan.scalazmq.common.protos.Messages
-import _root_.net.sandipan.scalazmq.common.serialization.Serializer
+import net.sandipan.scalazmq.common.serialization.{Deserializer, Serializer}
 
 /**
  * Simplified MarketData
@@ -19,8 +19,14 @@ object MarketData {
         .setVolume(md.volume)
         .setTimestamp(md.timestamp)
         .build()
-
       proto.toByteString().toByteArray()
+    }
+  }
+
+  implicit object marketDataDeserializer extends Deserializer[MarketData] {
+    def deserialize(bytes: Array[Byte]): MarketData = {
+      val msg = Messages.MarketData.parseFrom(bytes)
+      MarketData(msg.getSymbol(), msg.getBid(), msg.getAsk(), msg.getVolume(), msg.getTimestamp)
     }
   }
 
