@@ -5,8 +5,8 @@ option java_outer_classname = "Messages";
 
 message MarketData {
   required string symbol=1;
-  required double bid=2;
-  required double ask=3;
+  required string bid=2;
+  required string ask=3;
   required int32 volume=4;
   required string timestamp=5;
 }

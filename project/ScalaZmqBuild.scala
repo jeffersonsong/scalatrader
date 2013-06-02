@@ -27,8 +27,7 @@ object ScalaZmqBuild extends Build {
   lazy val root = Project(
     id = "scalazmq-root",
     base = file("."),
-    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker),
-    settings = Project.defaultSettings ++ jacoco.settings
+    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker)
   )
 
   val zmq = Project(
@@ -50,7 +49,8 @@ object ScalaZmqBuild extends Build {
   val algo = Project(
     id = "algo",
     base = file("./algo"),
-    dependencies = Seq(common, zmq)
+    dependencies = Seq(common, zmq),
+    settings = Project.defaultSettings ++ jacoco.settings
   )
 
   val tradereport = Project(

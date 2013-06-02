@@ -26,25 +26,35 @@ public final class Messages {
     com.google.protobuf.ByteString
         getSymbolBytes();
 
-    // required double bid = 2;
+    // required string bid = 2;
     /**
-     * <code>required double bid = 2;</code>
+     * <code>required string bid = 2;</code>
      */
     boolean hasBid();
     /**
-     * <code>required double bid = 2;</code>
+     * <code>required string bid = 2;</code>
      */
-    double getBid();
-
-    // required double ask = 3;
+    java.lang.String getBid();
     /**
-     * <code>required double ask = 3;</code>
+     * <code>required string bid = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getBidBytes();
+
+    // required string ask = 3;
+    /**
+     * <code>required string ask = 3;</code>
      */
     boolean hasAsk();
     /**
-     * <code>required double ask = 3;</code>
+     * <code>required string ask = 3;</code>
      */
-    double getAsk();
+    java.lang.String getAsk();
+    /**
+     * <code>required string ask = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getAskBytes();
 
     // required int32 volume = 4;
     /**
@@ -127,14 +137,14 @@ public final class Messages {
               symbol_ = input.readBytes();
               break;
             }
-            case 17: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              bid_ = input.readDouble();
+              bid_ = input.readBytes();
               break;
             }
-            case 25: {
+            case 26: {
               bitField0_ |= 0x00000004;
-              ask_ = input.readDouble();
+              ask_ = input.readBytes();
               break;
             }
             case 32: {
@@ -230,36 +240,90 @@ public final class Messages {
       }
     }
 
-    // required double bid = 2;
+    // required string bid = 2;
     public static final int BID_FIELD_NUMBER = 2;
-    private double bid_;
+    private java.lang.Object bid_;
     /**
-     * <code>required double bid = 2;</code>
+     * <code>required string bid = 2;</code>
      */
     public boolean hasBid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required double bid = 2;</code>
+     * <code>required string bid = 2;</code>
      */
-    public double getBid() {
-      return bid_;
+    public java.lang.String getBid() {
+      java.lang.Object ref = bid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          bid_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string bid = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBidBytes() {
+      java.lang.Object ref = bid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        bid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
-    // required double ask = 3;
+    // required string ask = 3;
     public static final int ASK_FIELD_NUMBER = 3;
-    private double ask_;
+    private java.lang.Object ask_;
     /**
-     * <code>required double ask = 3;</code>
+     * <code>required string ask = 3;</code>
      */
     public boolean hasAsk() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required double ask = 3;</code>
+     * <code>required string ask = 3;</code>
      */
-    public double getAsk() {
-      return ask_;
+    public java.lang.String getAsk() {
+      java.lang.Object ref = ask_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          ask_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string ask = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAskBytes() {
+      java.lang.Object ref = ask_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ask_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     // required int32 volume = 4;
@@ -323,8 +387,8 @@ public final class Messages {
 
     private void initFields() {
       symbol_ = "";
-      bid_ = 0D;
-      ask_ = 0D;
+      bid_ = "";
+      ask_ = "";
       volume_ = 0;
       timestamp_ = "";
     }
@@ -364,10 +428,10 @@ public final class Messages {
         output.writeBytes(1, getSymbolBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeDouble(2, bid_);
+        output.writeBytes(2, getBidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeDouble(3, ask_);
+        output.writeBytes(3, getAskBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, volume_);
@@ -390,11 +454,11 @@ public final class Messages {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, bid_);
+          .computeBytesSize(2, getBidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(3, ask_);
+          .computeBytesSize(3, getAskBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -522,9 +586,9 @@ public final class Messages {
         super.clear();
         symbol_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        bid_ = 0D;
+        bid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        ask_ = 0D;
+        ask_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         volume_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -600,10 +664,14 @@ public final class Messages {
           onChanged();
         }
         if (other.hasBid()) {
-          setBid(other.getBid());
+          bitField0_ |= 0x00000002;
+          bid_ = other.bid_;
+          onChanged();
         }
         if (other.hasAsk()) {
-          setAsk(other.getAsk());
+          bitField0_ |= 0x00000004;
+          ask_ = other.ask_;
+          onChanged();
         }
         if (other.hasVolume()) {
           setVolume(other.getVolume());
@@ -734,68 +802,150 @@ public final class Messages {
         return this;
       }
 
-      // required double bid = 2;
-      private double bid_ ;
+      // required string bid = 2;
+      private java.lang.Object bid_ = "";
       /**
-       * <code>required double bid = 2;</code>
+       * <code>required string bid = 2;</code>
        */
       public boolean hasBid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required double bid = 2;</code>
+       * <code>required string bid = 2;</code>
        */
-      public double getBid() {
-        return bid_;
+      public java.lang.String getBid() {
+        java.lang.Object ref = bid_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          bid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>required double bid = 2;</code>
+       * <code>required string bid = 2;</code>
        */
-      public Builder setBid(double value) {
-        bitField0_ |= 0x00000002;
+      public com.google.protobuf.ByteString
+          getBidBytes() {
+        java.lang.Object ref = bid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          bid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string bid = 2;</code>
+       */
+      public Builder setBid(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
         bid_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required double bid = 2;</code>
+       * <code>required string bid = 2;</code>
        */
       public Builder clearBid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        bid_ = 0D;
+        bid_ = getDefaultInstance().getBid();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string bid = 2;</code>
+       */
+      public Builder setBidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        bid_ = value;
         onChanged();
         return this;
       }
 
-      // required double ask = 3;
-      private double ask_ ;
+      // required string ask = 3;
+      private java.lang.Object ask_ = "";
       /**
-       * <code>required double ask = 3;</code>
+       * <code>required string ask = 3;</code>
        */
       public boolean hasAsk() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required double ask = 3;</code>
+       * <code>required string ask = 3;</code>
        */
-      public double getAsk() {
-        return ask_;
+      public java.lang.String getAsk() {
+        java.lang.Object ref = ask_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          ask_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>required double ask = 3;</code>
+       * <code>required string ask = 3;</code>
        */
-      public Builder setAsk(double value) {
-        bitField0_ |= 0x00000004;
+      public com.google.protobuf.ByteString
+          getAskBytes() {
+        java.lang.Object ref = ask_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ask_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string ask = 3;</code>
+       */
+      public Builder setAsk(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
         ask_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required double ask = 3;</code>
+       * <code>required string ask = 3;</code>
        */
       public Builder clearAsk() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        ask_ = 0D;
+        ask_ = getDefaultInstance().getAsk();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string ask = 3;</code>
+       */
+      public Builder setAskBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        ask_ = value;
         onChanged();
         return this;
       }
@@ -933,8 +1083,8 @@ public final class Messages {
   static {
     java.lang.String[] descriptorData = {
       "\n\016messages.proto\022\nmarketdata\"Y\n\nMarketDa" +
-      "ta\022\016\n\006symbol\030\001 \002(\t\022\013\n\003bid\030\002 \002(\001\022\013\n\003ask\030\003" +
-      " \002(\001\022\016\n\006volume\030\004 \002(\005\022\021\n\ttimestamp\030\005 \002(\tB" +
+      "ta\022\016\n\006symbol\030\001 \002(\t\022\013\n\003bid\030\002 \002(\t\022\013\n\003ask\030\003" +
+      " \002(\t\022\016\n\006volume\030\004 \002(\005\022\021\n\ttimestamp\030\005 \002(\tB" +
       "/\n#net.sandipan.scalazmq.common.protosB\010" +
       "Messages"
     };
