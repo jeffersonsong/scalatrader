@@ -1,16 +1,13 @@
 package net.sandipan.scalazmq.marketdata
 
-import com.typesafe.config.{ConfigFactory, Config}
-import org.jeromq.ZMQ
+import com.typesafe.config.ConfigFactory
 
 object Main {
 
-  val thisNode: String = "marketData" // TODO Left this way for testing, should be a System.getProperty or command-line arg.
-  val config: Config = ConfigFactory.load().getConfig(thisNode)
-
   def main(arr: Array[String]) {
-    val zmqContext = ZMQ.context()
-    val registry = new ComponentRegistry(config, zmqContext)
+
+    val config = ConfigFactory.load()
+    val registry = new ComponentRegistry(config)
 
     try {
       registry.marketDataSender.startSendingData()

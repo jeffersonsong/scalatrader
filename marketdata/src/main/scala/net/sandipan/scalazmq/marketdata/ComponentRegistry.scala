@@ -1,21 +1,20 @@
 package net.sandipan.scalazmq.marketdata
 
 import com.typesafe.config.Config
-import org.jeromq.ZMQ.Context
 import net.sandipan.scalazmq.zmq.{ContextComponent, PublisherComponent}
 import net.sandipan.scalazmq.common.model.MarketData
 import net.sandipan.scalazmq.common.components.ConfigComponent
 import scala.util.Random
 
-class ComponentRegistry(config: Config, context: Context)
+class ComponentRegistry(config: Config)
   extends MarketDataSenderComponent
   with PublisherComponent[MarketData]
   with ContextComponent
   with ConfigComponent {
 
-  override lazy val configProvider = ConfigProvider(config)
+  override lazy val configProvider = ConfigProvider(config.getConfig("marketData"))
 
-  override lazy val contextProvider = ContextProvider(context)
+  override lazy val contextProvider = ContextComponent.defaultContextProvider(config.getConfig("zmq"))
 
   override lazy val publisher = new Publisher[MarketData]
 

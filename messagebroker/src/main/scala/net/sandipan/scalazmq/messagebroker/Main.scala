@@ -7,9 +7,8 @@ object Main {
 
   def main(args: Array[String]) {
 
-    val config = ConfigFactory.load().getConfig("messageBroker")
-    val context = ZMQ.context()
-    val registry = new ComponentRegistry(config, context)
+    val config = ConfigFactory.load()
+    val registry = new ComponentRegistry(config)
 
     try {
       registry.brokerComponent.start()
