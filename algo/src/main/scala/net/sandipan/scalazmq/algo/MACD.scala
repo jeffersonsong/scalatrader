@@ -19,6 +19,30 @@ class MACD(params: Params) extends Algorithm {
     checkForCrossover(marketData.symbol)
   }
 
+  private def pushData(data: MarketData) {
+    val symbolData = dataMap.getOrElse(data.symbol, Nil).take(params.slow - 1)
+    val avg = averagePrice(symbolData, data) _
+    val slowAverage = avg(params.slow, d => Some(d.price), _.bid)
+    val fastAverage = avg(params.fast, d => Some(d.price), _.bid)
+    val macd = for {x <- fastAverage
+                    y <- slowAverage} yield (x - y)
+    val signal = for {x <- macd
+                      y <- avg(params.sig, _.macd, _ => x)} yield (y)
+    val difference = for {x <- macd
+                          y <- signal} yield (x - y)
+    dataMap += data.symbol -> (DataPoint(data.bid, slowAverage, fastAverage, macd, signal, difference) :: symbolData)
+  }
+
+  def averagePrice(symbolData: SymbolData, marketData: MarketData)(points: Int, f1: DataPoint => Option[Money], f2: MarketData => Money): Option[Money] = {
+    if (symbolData.length < points - 1)
+      None
+    else {
+      val valueVector = symbolData.take(points - 1) map f1
+      for {x <- flatten(valueVector)}
+      yield {(x.foldLeft(BigDecimal(0))(_ + _) + f2(marketData)) / points}
+    }
+  }
+
   /**
    * If any "None's" in a sequence, the return value will be none.
    */
@@ -27,35 +51,6 @@ class MACD(params: Params) extends Algorithm {
       case None => None
       case Some(n) => Some(n :: x.get)
     })
-  }
-
-  private def pushData(data: MarketData) {
-
-    val symbolData = dataMap.getOrElse(data.symbol, Nil).take(params.slow - 1)
-
-    def averagePrice(points: Int, f1: DataPoint => Option[Money], f2: MarketData => Money): Option[Money] = {
-      if (symbolData.length < points - 1)
-        None
-      else {
-        val valueVector = symbolData.take(points - 1) map f1
-        for {x <- flatten(valueVector)}
-          yield {(x.foldLeft(BigDecimal(0))(_ + _) + f2(data)) / points}
-      }
-    }
-
-    val slowAverage = averagePrice(params.slow, d => Some(d.price), _.bid)
-    val fastAverage = averagePrice(params.fast, d => Some(d.price), _.bid)
-
-    val macd = for {x <- fastAverage
-                    y <- slowAverage} yield (x - y)
-
-    val signal = for {x <- macd
-                      y <- averagePrice(params.sig, _.macd, _ => x)} yield (y)
-
-    val difference = for {x <- macd
-                          y <- signal} yield (x - y)
-
-    dataMap += data.symbol -> (DataPoint(data.bid, slowAverage, fastAverage, macd, signal, difference) :: symbolData)
   }
 
   private def checkForCrossover(symbol: String): Option[Signal] = {
