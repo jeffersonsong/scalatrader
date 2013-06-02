@@ -11,6 +11,8 @@ import net.sandipan.scalazmq.algo.MACD.Params
  */
 class MACD(params: Params) extends Algorithm {
 
+  override val algorithmId: String = "MACD"
+
   import MACD._
 
   private var dataMap: Map[Symbol, SymbolData] = Map()
@@ -93,17 +95,14 @@ object MACD {
   case class DataPoint(price: Money, slowSMA: Option[Money], fastSma: Option[Money], macd: Option[Money], signal: Option[BigDecimal], difference: Option[BigDecimal])
 
   def fromConfig(config: Config): MACD = {
-
     val params: Params = {
-      val macdParams = config.getConfig("macdParameters")
+      val macdParams = config.getConfig("algorithm.macdParameters")
       val slow = macdParams.getInt("slow")
       val fast = macdParams.getInt("fast")
       val signal = macdParams.getInt("signal")
       Params(slow, fast, signal)
     }
-
     new MACD(params)
-
   }
 
 }

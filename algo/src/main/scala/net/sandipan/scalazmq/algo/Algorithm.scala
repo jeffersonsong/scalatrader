@@ -6,4 +6,6 @@ trait Algorithm {
 
   def submit(marketData: MarketData): Option[Signal]
 
+  def algorithmId: String
+
 }

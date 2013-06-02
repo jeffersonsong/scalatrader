@@ -5,6 +5,7 @@ import net.sandipan.scalazmq.algo.MACD.Params
 import net.sandipan.scalazmq.common.model.{BuySignal, Signal, SellSignal, MarketData}
 import org.joda.time.LocalDateTime
 import org.scalatest.matchers.ShouldMatchers
+import java.util.UUID
 
 class MACDSpec extends FunSpec with ShouldMatchers {
 
@@ -16,7 +17,7 @@ class MACDSpec extends FunSpec with ShouldMatchers {
       val list1 = (1 to 40) map (BigDecimal(_))
       val list2 = ((1 to 39).reverse) map (BigDecimal(_))
 
-      val marketData = (list1 ++ list2) map (x => MarketData("IBM", x, x, 1000, LocalDateTime.now().toString))
+      val marketData = (list1 ++ list2) map (x => MarketData(UUID.randomUUID().toString, "IBM", x, x, 1000, LocalDateTime.now().toString))
 
       var signals: List[Signal] = Nil
       var indices: List[Int] = Nil

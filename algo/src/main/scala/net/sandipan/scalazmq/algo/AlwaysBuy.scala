@@ -8,6 +8,8 @@ import net.sandipan.scalazmq.common.model.{BuySignal, Signal, MarketData}
  */
 class AlwaysBuy extends Algorithm {
 
-  def submit(marketData: MarketData): Option[Signal] = Some(BuySignal(marketData.symbol))
+  override val algorithmId: String = "AlwaysBuy"
+
+  override def submit(marketData: MarketData): Option[Signal] = Some(BuySignal(marketData.symbol))
 
 }

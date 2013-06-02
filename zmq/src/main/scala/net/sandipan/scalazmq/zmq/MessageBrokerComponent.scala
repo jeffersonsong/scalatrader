@@ -41,7 +41,7 @@ trait MessageBrokerComponent {
 
       log.info("Starting message broker.")
 
-      while (!Thread.currentThread().isInterrupted()) {
+      while (!Thread.currentThread.isInterrupted) {
         items.poll()
 
         if (items.pollin(0)) {
@@ -78,6 +78,6 @@ trait MessageBrokerComponent {
 }
 
 object MessageBrokerComponent {
-  val XSUB_ADDR = "xsubAddress"
-  val XPUB_ADDR = "xpubAddress"
+  val XSUB_ADDR = "zmq.xsubAddress"
+  val XPUB_ADDR = "zmq.xpubAddress"
 }

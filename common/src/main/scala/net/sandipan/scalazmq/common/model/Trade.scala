@@ -1,3 +1,3 @@
 package net.sandipan.scalazmq.common.model
 
-case class Trade(symbol: String, signal: Signal)
+case class Trade(id: String, marketData: MarketData, signal: Signal, algorithmId: String, timestamp: String)

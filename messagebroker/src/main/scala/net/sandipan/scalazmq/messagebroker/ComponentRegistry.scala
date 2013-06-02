@@ -10,9 +10,9 @@ class ComponentRegistry(config: Config)
   with ContextComponent
   with ConfigComponent {
 
-  override lazy val configProvider = new ConfigProvider(config.getConfig("messageBroker"))
+  override lazy val configProvider = new ConfigProvider(config)
 
-  override lazy val contextProvider = ContextComponent.defaultContextProvider(config.getConfig("zmq"))
+  override lazy val contextProvider = ContextComponent.defaultContextProvider(config)
 
   override lazy val brokerComponent = new MessageBroker()
 

@@ -20,7 +20,7 @@ object ContextComponent {
   def defaultContextProvider(config: Config): ContextProvider = {
     val ioThreads =
       try {
-        config.getInt("ioThreads")
+        config.getInt("zmq.ioThreads")
       } catch {
         case e: Exception => {
           DEFAULT_IO_THREADS

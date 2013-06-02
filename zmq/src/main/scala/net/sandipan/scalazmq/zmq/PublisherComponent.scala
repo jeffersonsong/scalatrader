@@ -2,16 +2,16 @@ package net.sandipan.scalazmq.zmq
 
 import com.typesafe.config.Config
 import org.jeromq.ZMQ
-import net.sandipan.scalazmq.common.serialization.Serializer
 import net.sandipan.scalazmq.common.components.ConfigComponent
 import net.sandipan.scalazmq.common.util.HasLogger
+import net.sandipan.scalazmq.zmq.serialization.{Topic, Serializer}
 
 trait PublisherComponent[T] {
   this: ContextComponent with ConfigComponent =>
 
-  def publisher: Publisher[T]
+  def publisher: Publisher
 
-  class Publisher[T] extends HasZmqSocket with HasLogger {
+  class Publisher extends HasZmqSocket with HasLogger {
 
     private val socketAddr = config.getString(PublisherComponent.ADDRESS)
 
@@ -22,9 +22,11 @@ trait PublisherComponent[T] {
       s
     }
 
-    def publish(data: T)(implicit serializer: Serializer[T]) {
-      val result = socket.send(serializer.serialize(data))
-      if (!result)
+    def publish(data: T)(implicit serializer: Serializer[T], topic: Topic[T]) {
+      if (!socket.sendMore(topic.value()))
+        log.error("Oops.. unable to send topic information.")
+
+      if (!socket.send(serializer.serialize(data)))
         log.error("Oops.. unable to send %s".format(data))
     }
 
@@ -34,6 +36,6 @@ trait PublisherComponent[T] {
 
 object PublisherComponent {
 
-  val ADDRESS = "publishAddress"
+  val ADDRESS = "zmq.publishAddress"
 
 }

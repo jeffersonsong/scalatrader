@@ -4,9 +4,22 @@ option java_package = "net.sandipan.scalazmq.common.protos";
 option java_outer_classname = "Messages";
 
 message MarketData {
-  required string symbol=1;
-  required string bid=2;
-  required string ask=3;
-  required int32 volume=4;
-  required string timestamp=5;
+  required string id=1;
+  required string symbol=2;
+  required string bid=3;
+  required string ask=4;
+  required int32 volume=5;
+  required string timestamp=6;
+}
+
+message Trade {
+  required string id=1;
+  required string marketDataId=2;
+  required Direction direction=3;
+  required string timestamp=4;
+  required string algorithmId=5;
+  enum Direction {
+    BUY = 0;
+    SELL = 1;
+  }
 }

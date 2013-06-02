@@ -11,72 +11,87 @@ public final class Messages {
   public interface MarketDataOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // required string symbol = 1;
+    // required string id = 1;
     /**
-     * <code>required string symbol = 1;</code>
+     * <code>required string id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>required string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>required string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    // required string symbol = 2;
+    /**
+     * <code>required string symbol = 2;</code>
      */
     boolean hasSymbol();
     /**
-     * <code>required string symbol = 1;</code>
+     * <code>required string symbol = 2;</code>
      */
     java.lang.String getSymbol();
     /**
-     * <code>required string symbol = 1;</code>
+     * <code>required string symbol = 2;</code>
      */
     com.google.protobuf.ByteString
         getSymbolBytes();
 
-    // required string bid = 2;
+    // required string bid = 3;
     /**
-     * <code>required string bid = 2;</code>
+     * <code>required string bid = 3;</code>
      */
     boolean hasBid();
     /**
-     * <code>required string bid = 2;</code>
+     * <code>required string bid = 3;</code>
      */
     java.lang.String getBid();
     /**
-     * <code>required string bid = 2;</code>
+     * <code>required string bid = 3;</code>
      */
     com.google.protobuf.ByteString
         getBidBytes();
 
-    // required string ask = 3;
+    // required string ask = 4;
     /**
-     * <code>required string ask = 3;</code>
+     * <code>required string ask = 4;</code>
      */
     boolean hasAsk();
     /**
-     * <code>required string ask = 3;</code>
+     * <code>required string ask = 4;</code>
      */
     java.lang.String getAsk();
     /**
-     * <code>required string ask = 3;</code>
+     * <code>required string ask = 4;</code>
      */
     com.google.protobuf.ByteString
         getAskBytes();
 
-    // required int32 volume = 4;
+    // required int32 volume = 5;
     /**
-     * <code>required int32 volume = 4;</code>
+     * <code>required int32 volume = 5;</code>
      */
     boolean hasVolume();
     /**
-     * <code>required int32 volume = 4;</code>
+     * <code>required int32 volume = 5;</code>
      */
     int getVolume();
 
-    // required string timestamp = 5;
+    // required string timestamp = 6;
     /**
-     * <code>required string timestamp = 5;</code>
+     * <code>required string timestamp = 6;</code>
      */
     boolean hasTimestamp();
     /**
-     * <code>required string timestamp = 5;</code>
+     * <code>required string timestamp = 6;</code>
      */
     java.lang.String getTimestamp();
     /**
-     * <code>required string timestamp = 5;</code>
+     * <code>required string timestamp = 6;</code>
      */
     com.google.protobuf.ByteString
         getTimestampBytes();
@@ -134,26 +149,31 @@ public final class Messages {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              symbol_ = input.readBytes();
+              id_ = input.readBytes();
               break;
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              bid_ = input.readBytes();
+              symbol_ = input.readBytes();
               break;
             }
             case 26: {
               bitField0_ |= 0x00000004;
+              bid_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
               ask_ = input.readBytes();
               break;
             }
-            case 32: {
-              bitField0_ |= 0x00000008;
+            case 40: {
+              bitField0_ |= 0x00000010;
               volume_ = input.readInt32();
               break;
             }
-            case 42: {
-              bitField0_ |= 0x00000010;
+            case 50: {
+              bitField0_ |= 0x00000020;
               timestamp_ = input.readBytes();
               break;
             }
@@ -197,17 +217,60 @@ public final class Messages {
     }
 
     private int bitField0_;
-    // required string symbol = 1;
-    public static final int SYMBOL_FIELD_NUMBER = 1;
-    private java.lang.Object symbol_;
+    // required string id = 1;
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.Object id_;
     /**
-     * <code>required string symbol = 1;</code>
+     * <code>required string id = 1;</code>
      */
-    public boolean hasSymbol() {
+    public boolean hasId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required string symbol = 1;</code>
+     * <code>required string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          id_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // required string symbol = 2;
+    public static final int SYMBOL_FIELD_NUMBER = 2;
+    private java.lang.Object symbol_;
+    /**
+     * <code>required string symbol = 2;</code>
+     */
+    public boolean hasSymbol() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required string symbol = 2;</code>
      */
     public java.lang.String getSymbol() {
       java.lang.Object ref = symbol_;
@@ -224,7 +287,7 @@ public final class Messages {
       }
     }
     /**
-     * <code>required string symbol = 1;</code>
+     * <code>required string symbol = 2;</code>
      */
     public com.google.protobuf.ByteString
         getSymbolBytes() {
@@ -240,17 +303,17 @@ public final class Messages {
       }
     }
 
-    // required string bid = 2;
-    public static final int BID_FIELD_NUMBER = 2;
+    // required string bid = 3;
+    public static final int BID_FIELD_NUMBER = 3;
     private java.lang.Object bid_;
     /**
-     * <code>required string bid = 2;</code>
+     * <code>required string bid = 3;</code>
      */
     public boolean hasBid() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required string bid = 2;</code>
+     * <code>required string bid = 3;</code>
      */
     public java.lang.String getBid() {
       java.lang.Object ref = bid_;
@@ -267,7 +330,7 @@ public final class Messages {
       }
     }
     /**
-     * <code>required string bid = 2;</code>
+     * <code>required string bid = 3;</code>
      */
     public com.google.protobuf.ByteString
         getBidBytes() {
@@ -283,17 +346,17 @@ public final class Messages {
       }
     }
 
-    // required string ask = 3;
-    public static final int ASK_FIELD_NUMBER = 3;
+    // required string ask = 4;
+    public static final int ASK_FIELD_NUMBER = 4;
     private java.lang.Object ask_;
     /**
-     * <code>required string ask = 3;</code>
+     * <code>required string ask = 4;</code>
      */
     public boolean hasAsk() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required string ask = 3;</code>
+     * <code>required string ask = 4;</code>
      */
     public java.lang.String getAsk() {
       java.lang.Object ref = ask_;
@@ -310,7 +373,7 @@ public final class Messages {
       }
     }
     /**
-     * <code>required string ask = 3;</code>
+     * <code>required string ask = 4;</code>
      */
     public com.google.protobuf.ByteString
         getAskBytes() {
@@ -326,33 +389,33 @@ public final class Messages {
       }
     }
 
-    // required int32 volume = 4;
-    public static final int VOLUME_FIELD_NUMBER = 4;
+    // required int32 volume = 5;
+    public static final int VOLUME_FIELD_NUMBER = 5;
     private int volume_;
     /**
-     * <code>required int32 volume = 4;</code>
+     * <code>required int32 volume = 5;</code>
      */
     public boolean hasVolume() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>required int32 volume = 4;</code>
+     * <code>required int32 volume = 5;</code>
      */
     public int getVolume() {
       return volume_;
     }
 
-    // required string timestamp = 5;
-    public static final int TIMESTAMP_FIELD_NUMBER = 5;
+    // required string timestamp = 6;
+    public static final int TIMESTAMP_FIELD_NUMBER = 6;
     private java.lang.Object timestamp_;
     /**
-     * <code>required string timestamp = 5;</code>
+     * <code>required string timestamp = 6;</code>
      */
     public boolean hasTimestamp() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>required string timestamp = 5;</code>
+     * <code>required string timestamp = 6;</code>
      */
     public java.lang.String getTimestamp() {
       java.lang.Object ref = timestamp_;
@@ -369,7 +432,7 @@ public final class Messages {
       }
     }
     /**
-     * <code>required string timestamp = 5;</code>
+     * <code>required string timestamp = 6;</code>
      */
     public com.google.protobuf.ByteString
         getTimestampBytes() {
@@ -386,6 +449,7 @@ public final class Messages {
     }
 
     private void initFields() {
+      id_ = "";
       symbol_ = "";
       bid_ = "";
       ask_ = "";
@@ -397,6 +461,10 @@ public final class Messages {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (!hasId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasSymbol()) {
         memoizedIsInitialized = 0;
         return false;
@@ -425,19 +493,22 @@ public final class Messages {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getSymbolBytes());
+        output.writeBytes(1, getIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getBidBytes());
+        output.writeBytes(2, getSymbolBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getAskBytes());
+        output.writeBytes(3, getBidBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, volume_);
+        output.writeBytes(4, getAskBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getTimestampBytes());
+        output.writeInt32(5, volume_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getTimestampBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -450,23 +521,27 @@ public final class Messages {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getSymbolBytes());
+          .computeBytesSize(1, getIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getBidBytes());
+          .computeBytesSize(2, getSymbolBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getAskBytes());
+          .computeBytesSize(3, getBidBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, volume_);
+          .computeBytesSize(4, getAskBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getTimestampBytes());
+          .computeInt32Size(5, volume_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getTimestampBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -584,16 +659,18 @@ public final class Messages {
 
       public Builder clear() {
         super.clear();
-        symbol_ = "";
+        id_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        bid_ = "";
+        symbol_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        ask_ = "";
+        bid_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        volume_ = 0;
+        ask_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        timestamp_ = "";
+        volume_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
+        timestamp_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -625,21 +702,25 @@ public final class Messages {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.symbol_ = symbol_;
+        result.id_ = id_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.bid_ = bid_;
+        result.symbol_ = symbol_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.ask_ = ask_;
+        result.bid_ = bid_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.volume_ = volume_;
+        result.ask_ = ask_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
+        }
+        result.volume_ = volume_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
         }
         result.timestamp_ = timestamp_;
         result.bitField0_ = to_bitField0_;
@@ -658,18 +739,23 @@ public final class Messages {
 
       public Builder mergeFrom(net.sandipan.scalazmq.common.protos.Messages.MarketData other) {
         if (other == net.sandipan.scalazmq.common.protos.Messages.MarketData.getDefaultInstance()) return this;
-        if (other.hasSymbol()) {
+        if (other.hasId()) {
           bitField0_ |= 0x00000001;
+          id_ = other.id_;
+          onChanged();
+        }
+        if (other.hasSymbol()) {
+          bitField0_ |= 0x00000002;
           symbol_ = other.symbol_;
           onChanged();
         }
         if (other.hasBid()) {
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           bid_ = other.bid_;
           onChanged();
         }
         if (other.hasAsk()) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
           ask_ = other.ask_;
           onChanged();
         }
@@ -677,7 +763,7 @@ public final class Messages {
           setVolume(other.getVolume());
         }
         if (other.hasTimestamp()) {
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000020;
           timestamp_ = other.timestamp_;
           onChanged();
         }
@@ -686,6 +772,10 @@ public final class Messages {
       }
 
       public final boolean isInitialized() {
+        if (!hasId()) {
+          
+          return false;
+        }
         if (!hasSymbol()) {
           
           return false;
@@ -728,16 +818,90 @@ public final class Messages {
       }
       private int bitField0_;
 
-      // required string symbol = 1;
-      private java.lang.Object symbol_ = "";
+      // required string id = 1;
+      private java.lang.Object id_ = "";
       /**
-       * <code>required string symbol = 1;</code>
+       * <code>required string id = 1;</code>
        */
-      public boolean hasSymbol() {
+      public boolean hasId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required string symbol = 1;</code>
+       * <code>required string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      // required string symbol = 2;
+      private java.lang.Object symbol_ = "";
+      /**
+       * <code>required string symbol = 2;</code>
+       */
+      public boolean hasSymbol() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required string symbol = 2;</code>
        */
       public java.lang.String getSymbol() {
         java.lang.Object ref = symbol_;
@@ -751,7 +915,7 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string symbol = 1;</code>
+       * <code>required string symbol = 2;</code>
        */
       public com.google.protobuf.ByteString
           getSymbolBytes() {
@@ -767,51 +931,51 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string symbol = 1;</code>
+       * <code>required string symbol = 2;</code>
        */
       public Builder setSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000002;
         symbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string symbol = 1;</code>
+       * <code>required string symbol = 2;</code>
        */
       public Builder clearSymbol() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         symbol_ = getDefaultInstance().getSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>required string symbol = 1;</code>
+       * <code>required string symbol = 2;</code>
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000002;
         symbol_ = value;
         onChanged();
         return this;
       }
 
-      // required string bid = 2;
+      // required string bid = 3;
       private java.lang.Object bid_ = "";
       /**
-       * <code>required string bid = 2;</code>
+       * <code>required string bid = 3;</code>
        */
       public boolean hasBid() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required string bid = 2;</code>
+       * <code>required string bid = 3;</code>
        */
       public java.lang.String getBid() {
         java.lang.Object ref = bid_;
@@ -825,7 +989,7 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string bid = 2;</code>
+       * <code>required string bid = 3;</code>
        */
       public com.google.protobuf.ByteString
           getBidBytes() {
@@ -841,51 +1005,51 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string bid = 2;</code>
+       * <code>required string bid = 3;</code>
        */
       public Builder setBid(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         bid_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string bid = 2;</code>
+       * <code>required string bid = 3;</code>
        */
       public Builder clearBid() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         bid_ = getDefaultInstance().getBid();
         onChanged();
         return this;
       }
       /**
-       * <code>required string bid = 2;</code>
+       * <code>required string bid = 3;</code>
        */
       public Builder setBidBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         bid_ = value;
         onChanged();
         return this;
       }
 
-      // required string ask = 3;
+      // required string ask = 4;
       private java.lang.Object ask_ = "";
       /**
-       * <code>required string ask = 3;</code>
+       * <code>required string ask = 4;</code>
        */
       public boolean hasAsk() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required string ask = 3;</code>
+       * <code>required string ask = 4;</code>
        */
       public java.lang.String getAsk() {
         java.lang.Object ref = ask_;
@@ -899,7 +1063,7 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string ask = 3;</code>
+       * <code>required string ask = 4;</code>
        */
       public com.google.protobuf.ByteString
           getAskBytes() {
@@ -915,84 +1079,84 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string ask = 3;</code>
+       * <code>required string ask = 4;</code>
        */
       public Builder setAsk(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000008;
         ask_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string ask = 3;</code>
+       * <code>required string ask = 4;</code>
        */
       public Builder clearAsk() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         ask_ = getDefaultInstance().getAsk();
         onChanged();
         return this;
       }
       /**
-       * <code>required string ask = 3;</code>
+       * <code>required string ask = 4;</code>
        */
       public Builder setAskBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000008;
         ask_ = value;
         onChanged();
         return this;
       }
 
-      // required int32 volume = 4;
+      // required int32 volume = 5;
       private int volume_ ;
       /**
-       * <code>required int32 volume = 4;</code>
+       * <code>required int32 volume = 5;</code>
        */
       public boolean hasVolume() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>required int32 volume = 4;</code>
+       * <code>required int32 volume = 5;</code>
        */
       public int getVolume() {
         return volume_;
       }
       /**
-       * <code>required int32 volume = 4;</code>
+       * <code>required int32 volume = 5;</code>
        */
       public Builder setVolume(int value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         volume_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 volume = 4;</code>
+       * <code>required int32 volume = 5;</code>
        */
       public Builder clearVolume() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         volume_ = 0;
         onChanged();
         return this;
       }
 
-      // required string timestamp = 5;
+      // required string timestamp = 6;
       private java.lang.Object timestamp_ = "";
       /**
-       * <code>required string timestamp = 5;</code>
+       * <code>required string timestamp = 6;</code>
        */
       public boolean hasTimestamp() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>required string timestamp = 5;</code>
+       * <code>required string timestamp = 6;</code>
        */
       public java.lang.String getTimestamp() {
         java.lang.Object ref = timestamp_;
@@ -1006,7 +1170,7 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string timestamp = 5;</code>
+       * <code>required string timestamp = 6;</code>
        */
       public com.google.protobuf.ByteString
           getTimestampBytes() {
@@ -1022,36 +1186,36 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string timestamp = 5;</code>
+       * <code>required string timestamp = 6;</code>
        */
       public Builder setTimestamp(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000020;
         timestamp_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string timestamp = 5;</code>
+       * <code>required string timestamp = 6;</code>
        */
       public Builder clearTimestamp() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         timestamp_ = getDefaultInstance().getTimestamp();
         onChanged();
         return this;
       }
       /**
-       * <code>required string timestamp = 5;</code>
+       * <code>required string timestamp = 6;</code>
        */
       public Builder setTimestampBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000020;
         timestamp_ = value;
         onChanged();
         return this;
@@ -1068,11 +1232,1167 @@ public final class Messages {
     // @@protoc_insertion_point(class_scope:marketdata.MarketData)
   }
 
+  public interface TradeOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required string id = 1;
+    /**
+     * <code>required string id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>required string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>required string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    // required string marketDataId = 2;
+    /**
+     * <code>required string marketDataId = 2;</code>
+     */
+    boolean hasMarketDataId();
+    /**
+     * <code>required string marketDataId = 2;</code>
+     */
+    java.lang.String getMarketDataId();
+    /**
+     * <code>required string marketDataId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getMarketDataIdBytes();
+
+    // required .marketdata.Trade.Direction direction = 3;
+    /**
+     * <code>required .marketdata.Trade.Direction direction = 3;</code>
+     */
+    boolean hasDirection();
+    /**
+     * <code>required .marketdata.Trade.Direction direction = 3;</code>
+     */
+    net.sandipan.scalazmq.common.protos.Messages.Trade.Direction getDirection();
+
+    // required string timestamp = 4;
+    /**
+     * <code>required string timestamp = 4;</code>
+     */
+    boolean hasTimestamp();
+    /**
+     * <code>required string timestamp = 4;</code>
+     */
+    java.lang.String getTimestamp();
+    /**
+     * <code>required string timestamp = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getTimestampBytes();
+
+    // required string algorithmId = 5;
+    /**
+     * <code>required string algorithmId = 5;</code>
+     */
+    boolean hasAlgorithmId();
+    /**
+     * <code>required string algorithmId = 5;</code>
+     */
+    java.lang.String getAlgorithmId();
+    /**
+     * <code>required string algorithmId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getAlgorithmIdBytes();
+  }
+  /**
+   * Protobuf type {@code marketdata.Trade}
+   */
+  public static final class Trade extends
+      com.google.protobuf.GeneratedMessage
+      implements TradeOrBuilder {
+    // Use Trade.newBuilder() to construct.
+    private Trade(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Trade(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Trade defaultInstance;
+    public static Trade getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Trade getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Trade(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              marketDataId_ = input.readBytes();
+              break;
+            }
+            case 24: {
+              int rawValue = input.readEnum();
+              net.sandipan.scalazmq.common.protos.Messages.Trade.Direction value = net.sandipan.scalazmq.common.protos.Messages.Trade.Direction.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(3, rawValue);
+              } else {
+                bitField0_ |= 0x00000004;
+                direction_ = value;
+              }
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              timestamp_ = input.readBytes();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              algorithmId_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return net.sandipan.scalazmq.common.protos.Messages.internal_static_marketdata_Trade_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return net.sandipan.scalazmq.common.protos.Messages.internal_static_marketdata_Trade_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              net.sandipan.scalazmq.common.protos.Messages.Trade.class, net.sandipan.scalazmq.common.protos.Messages.Trade.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Trade> PARSER =
+        new com.google.protobuf.AbstractParser<Trade>() {
+      public Trade parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Trade(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Trade> getParserForType() {
+      return PARSER;
+    }
+
+    /**
+     * Protobuf enum {@code marketdata.Trade.Direction}
+     */
+    public enum Direction
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>BUY = 0;</code>
+       */
+      BUY(0, 0),
+      /**
+       * <code>SELL = 1;</code>
+       */
+      SELL(1, 1),
+      ;
+
+      /**
+       * <code>BUY = 0;</code>
+       */
+      public static final int BUY_VALUE = 0;
+      /**
+       * <code>SELL = 1;</code>
+       */
+      public static final int SELL_VALUE = 1;
+
+
+      public final int getNumber() { return value; }
+
+      public static Direction valueOf(int value) {
+        switch (value) {
+          case 0: return BUY;
+          case 1: return SELL;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Direction>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<Direction>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Direction>() {
+              public Direction findValueByNumber(int number) {
+                return Direction.valueOf(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return net.sandipan.scalazmq.common.protos.Messages.Trade.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Direction[] VALUES = values();
+
+      public static Direction valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int index;
+      private final int value;
+
+      private Direction(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:marketdata.Trade.Direction)
+    }
+
+    private int bitField0_;
+    // required string id = 1;
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.Object id_;
+    /**
+     * <code>required string id = 1;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          id_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // required string marketDataId = 2;
+    public static final int MARKETDATAID_FIELD_NUMBER = 2;
+    private java.lang.Object marketDataId_;
+    /**
+     * <code>required string marketDataId = 2;</code>
+     */
+    public boolean hasMarketDataId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required string marketDataId = 2;</code>
+     */
+    public java.lang.String getMarketDataId() {
+      java.lang.Object ref = marketDataId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          marketDataId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string marketDataId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMarketDataIdBytes() {
+      java.lang.Object ref = marketDataId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        marketDataId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // required .marketdata.Trade.Direction direction = 3;
+    public static final int DIRECTION_FIELD_NUMBER = 3;
+    private net.sandipan.scalazmq.common.protos.Messages.Trade.Direction direction_;
+    /**
+     * <code>required .marketdata.Trade.Direction direction = 3;</code>
+     */
+    public boolean hasDirection() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>required .marketdata.Trade.Direction direction = 3;</code>
+     */
+    public net.sandipan.scalazmq.common.protos.Messages.Trade.Direction getDirection() {
+      return direction_;
+    }
+
+    // required string timestamp = 4;
+    public static final int TIMESTAMP_FIELD_NUMBER = 4;
+    private java.lang.Object timestamp_;
+    /**
+     * <code>required string timestamp = 4;</code>
+     */
+    public boolean hasTimestamp() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>required string timestamp = 4;</code>
+     */
+    public java.lang.String getTimestamp() {
+      java.lang.Object ref = timestamp_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          timestamp_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string timestamp = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTimestampBytes() {
+      java.lang.Object ref = timestamp_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        timestamp_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // required string algorithmId = 5;
+    public static final int ALGORITHMID_FIELD_NUMBER = 5;
+    private java.lang.Object algorithmId_;
+    /**
+     * <code>required string algorithmId = 5;</code>
+     */
+    public boolean hasAlgorithmId() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>required string algorithmId = 5;</code>
+     */
+    public java.lang.String getAlgorithmId() {
+      java.lang.Object ref = algorithmId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          algorithmId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string algorithmId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAlgorithmIdBytes() {
+      java.lang.Object ref = algorithmId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        algorithmId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      id_ = "";
+      marketDataId_ = "";
+      direction_ = net.sandipan.scalazmq.common.protos.Messages.Trade.Direction.BUY;
+      timestamp_ = "";
+      algorithmId_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasMarketDataId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasDirection()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasTimestamp()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasAlgorithmId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getMarketDataIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeEnum(3, direction_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getTimestampBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getAlgorithmIdBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getMarketDataIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, direction_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getTimestampBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getAlgorithmIdBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static net.sandipan.scalazmq.common.protos.Messages.Trade parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(net.sandipan.scalazmq.common.protos.Messages.Trade prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code marketdata.Trade}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements net.sandipan.scalazmq.common.protos.Messages.TradeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return net.sandipan.scalazmq.common.protos.Messages.internal_static_marketdata_Trade_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return net.sandipan.scalazmq.common.protos.Messages.internal_static_marketdata_Trade_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                net.sandipan.scalazmq.common.protos.Messages.Trade.class, net.sandipan.scalazmq.common.protos.Messages.Trade.Builder.class);
+      }
+
+      // Construct using net.sandipan.scalazmq.common.protos.Messages.Trade.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        id_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        marketDataId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        direction_ = net.sandipan.scalazmq.common.protos.Messages.Trade.Direction.BUY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        timestamp_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        algorithmId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return net.sandipan.scalazmq.common.protos.Messages.internal_static_marketdata_Trade_descriptor;
+      }
+
+      public net.sandipan.scalazmq.common.protos.Messages.Trade getDefaultInstanceForType() {
+        return net.sandipan.scalazmq.common.protos.Messages.Trade.getDefaultInstance();
+      }
+
+      public net.sandipan.scalazmq.common.protos.Messages.Trade build() {
+        net.sandipan.scalazmq.common.protos.Messages.Trade result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public net.sandipan.scalazmq.common.protos.Messages.Trade buildPartial() {
+        net.sandipan.scalazmq.common.protos.Messages.Trade result = new net.sandipan.scalazmq.common.protos.Messages.Trade(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.marketDataId_ = marketDataId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.direction_ = direction_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.timestamp_ = timestamp_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.algorithmId_ = algorithmId_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof net.sandipan.scalazmq.common.protos.Messages.Trade) {
+          return mergeFrom((net.sandipan.scalazmq.common.protos.Messages.Trade)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(net.sandipan.scalazmq.common.protos.Messages.Trade other) {
+        if (other == net.sandipan.scalazmq.common.protos.Messages.Trade.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          bitField0_ |= 0x00000001;
+          id_ = other.id_;
+          onChanged();
+        }
+        if (other.hasMarketDataId()) {
+          bitField0_ |= 0x00000002;
+          marketDataId_ = other.marketDataId_;
+          onChanged();
+        }
+        if (other.hasDirection()) {
+          setDirection(other.getDirection());
+        }
+        if (other.hasTimestamp()) {
+          bitField0_ |= 0x00000008;
+          timestamp_ = other.timestamp_;
+          onChanged();
+        }
+        if (other.hasAlgorithmId()) {
+          bitField0_ |= 0x00000010;
+          algorithmId_ = other.algorithmId_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasId()) {
+          
+          return false;
+        }
+        if (!hasMarketDataId()) {
+          
+          return false;
+        }
+        if (!hasDirection()) {
+          
+          return false;
+        }
+        if (!hasTimestamp()) {
+          
+          return false;
+        }
+        if (!hasAlgorithmId()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        net.sandipan.scalazmq.common.protos.Messages.Trade parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (net.sandipan.scalazmq.common.protos.Messages.Trade) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required string id = 1;
+      private java.lang.Object id_ = "";
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      // required string marketDataId = 2;
+      private java.lang.Object marketDataId_ = "";
+      /**
+       * <code>required string marketDataId = 2;</code>
+       */
+      public boolean hasMarketDataId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required string marketDataId = 2;</code>
+       */
+      public java.lang.String getMarketDataId() {
+        java.lang.Object ref = marketDataId_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          marketDataId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string marketDataId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMarketDataIdBytes() {
+        java.lang.Object ref = marketDataId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          marketDataId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string marketDataId = 2;</code>
+       */
+      public Builder setMarketDataId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        marketDataId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string marketDataId = 2;</code>
+       */
+      public Builder clearMarketDataId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        marketDataId_ = getDefaultInstance().getMarketDataId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string marketDataId = 2;</code>
+       */
+      public Builder setMarketDataIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        marketDataId_ = value;
+        onChanged();
+        return this;
+      }
+
+      // required .marketdata.Trade.Direction direction = 3;
+      private net.sandipan.scalazmq.common.protos.Messages.Trade.Direction direction_ = net.sandipan.scalazmq.common.protos.Messages.Trade.Direction.BUY;
+      /**
+       * <code>required .marketdata.Trade.Direction direction = 3;</code>
+       */
+      public boolean hasDirection() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>required .marketdata.Trade.Direction direction = 3;</code>
+       */
+      public net.sandipan.scalazmq.common.protos.Messages.Trade.Direction getDirection() {
+        return direction_;
+      }
+      /**
+       * <code>required .marketdata.Trade.Direction direction = 3;</code>
+       */
+      public Builder setDirection(net.sandipan.scalazmq.common.protos.Messages.Trade.Direction value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        direction_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required .marketdata.Trade.Direction direction = 3;</code>
+       */
+      public Builder clearDirection() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        direction_ = net.sandipan.scalazmq.common.protos.Messages.Trade.Direction.BUY;
+        onChanged();
+        return this;
+      }
+
+      // required string timestamp = 4;
+      private java.lang.Object timestamp_ = "";
+      /**
+       * <code>required string timestamp = 4;</code>
+       */
+      public boolean hasTimestamp() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>required string timestamp = 4;</code>
+       */
+      public java.lang.String getTimestamp() {
+        java.lang.Object ref = timestamp_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          timestamp_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string timestamp = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTimestampBytes() {
+        java.lang.Object ref = timestamp_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          timestamp_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string timestamp = 4;</code>
+       */
+      public Builder setTimestamp(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string timestamp = 4;</code>
+       */
+      public Builder clearTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        timestamp_ = getDefaultInstance().getTimestamp();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string timestamp = 4;</code>
+       */
+      public Builder setTimestampBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+
+      // required string algorithmId = 5;
+      private java.lang.Object algorithmId_ = "";
+      /**
+       * <code>required string algorithmId = 5;</code>
+       */
+      public boolean hasAlgorithmId() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>required string algorithmId = 5;</code>
+       */
+      public java.lang.String getAlgorithmId() {
+        java.lang.Object ref = algorithmId_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          algorithmId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string algorithmId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAlgorithmIdBytes() {
+        java.lang.Object ref = algorithmId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          algorithmId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string algorithmId = 5;</code>
+       */
+      public Builder setAlgorithmId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        algorithmId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string algorithmId = 5;</code>
+       */
+      public Builder clearAlgorithmId() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        algorithmId_ = getDefaultInstance().getAlgorithmId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string algorithmId = 5;</code>
+       */
+      public Builder setAlgorithmIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        algorithmId_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:marketdata.Trade)
+    }
+
+    static {
+      defaultInstance = new Trade(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:marketdata.Trade)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_marketdata_MarketData_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_marketdata_MarketData_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_marketdata_Trade_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_marketdata_Trade_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1082,11 +2402,15 @@ public final class Messages {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016messages.proto\022\nmarketdata\"Y\n\nMarketDa" +
-      "ta\022\016\n\006symbol\030\001 \002(\t\022\013\n\003bid\030\002 \002(\t\022\013\n\003ask\030\003" +
-      " \002(\t\022\016\n\006volume\030\004 \002(\005\022\021\n\ttimestamp\030\005 \002(\tB" +
-      "/\n#net.sandipan.scalazmq.common.protosB\010" +
-      "Messages"
+      "\n\016messages.proto\022\nmarketdata\"e\n\nMarketDa" +
+      "ta\022\n\n\002id\030\001 \002(\t\022\016\n\006symbol\030\002 \002(\t\022\013\n\003bid\030\003 " +
+      "\002(\t\022\013\n\003ask\030\004 \002(\t\022\016\n\006volume\030\005 \002(\005\022\021\n\ttime" +
+      "stamp\030\006 \002(\t\"\241\001\n\005Trade\022\n\n\002id\030\001 \002(\t\022\024\n\014mar" +
+      "ketDataId\030\002 \002(\t\022.\n\tdirection\030\003 \002(\0162\033.mar" +
+      "ketdata.Trade.Direction\022\021\n\ttimestamp\030\004 \002" +
+      "(\t\022\023\n\013algorithmId\030\005 \002(\t\"\036\n\tDirection\022\007\n\003" +
+      "BUY\020\000\022\010\n\004SELL\020\001B/\n#net.sandipan.scalazmq" +
+      ".common.protosB\010Messages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1098,7 +2422,13 @@ public final class Messages {
           internal_static_marketdata_MarketData_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_marketdata_MarketData_descriptor,
-              new java.lang.String[] { "Symbol", "Bid", "Ask", "Volume", "Timestamp", });
+              new java.lang.String[] { "Id", "Symbol", "Bid", "Ask", "Volume", "Timestamp", });
+          internal_static_marketdata_Trade_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_marketdata_Trade_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_marketdata_Trade_descriptor,
+              new java.lang.String[] { "Id", "MarketDataId", "Direction", "Timestamp", "AlgorithmId", });
           return null;
         }
       };
