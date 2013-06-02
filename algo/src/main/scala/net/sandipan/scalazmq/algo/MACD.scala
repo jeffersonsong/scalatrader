@@ -5,8 +5,9 @@ import com.typesafe.config.Config
 import net.sandipan.scalazmq.algo.MACD.Params
 
 /**
- * A simplified MACD. Note: for pedagogical purposes, just using simple moving averages rather than
- * exponential moving averages.
+ * A simplified MACD. Note: for pedagogical purposes, the following dumbing down has taken place:
+ * - Using simple moving averages rather than exponential moving averages
+ * - Using best bid price only
  */
 class MACD(params: Params) extends Algorithm {
 
