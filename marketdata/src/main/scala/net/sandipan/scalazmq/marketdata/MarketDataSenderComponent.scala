@@ -33,9 +33,11 @@ trait MarketDataSenderComponent {
 
     def startSendingData() {
       for (md <- randomMarketDataStream()) {
-        log.info("Publishing: %s".format(md))
+        if (log.isDebugEnabled)
+          log.debug("Publishing: %s".format(md))
         publisher.publish(md)
-        Thread.sleep(sleepTime)
+        if (sleepTime > 0)
+          Thread.sleep(sleepTime)
       }
     }
 

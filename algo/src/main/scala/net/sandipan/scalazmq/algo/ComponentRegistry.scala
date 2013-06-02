@@ -18,7 +18,7 @@ class ComponentRegistry(context: Context, config: Config)
 
   override val contextProvider = ContextProvider(context)
 
-  def algorithms = List(new AlwaysBuy)
+  def algorithms = List(MACD.fromConfig(config))
 
   def runner = new AlgorithmRunner
 }
