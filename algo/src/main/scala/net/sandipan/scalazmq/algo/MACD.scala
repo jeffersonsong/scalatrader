@@ -14,7 +14,7 @@ class MACD(params: Params) extends Algorithm {
 
   private var dataMap: Map[Symbol, SymbolData] = Map()
 
-  def submit(marketData: MarketData): Option[Signal] = {
+  override def submit(marketData: MarketData): Option[Signal] = {
     pushData(marketData)
     checkForCrossover(marketData.symbol)
   }
