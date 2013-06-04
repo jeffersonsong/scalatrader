@@ -56,7 +56,12 @@ object ScalaZmqBuild extends Build {
   val tradereport = Project(
     id = "tradereport",
     base = file("./tradereport"),
-    dependencies = Seq(common, zmq)
+    dependencies = Seq(common, zmq),
+    settings = Project.defaultSettings ++ Seq(
+      libraryDependencies ++= Seq(
+        "org.mongodb" %% "casbah" % "2.6.1"
+      )
+    )
   )
 
   val messagebroker = Project(
