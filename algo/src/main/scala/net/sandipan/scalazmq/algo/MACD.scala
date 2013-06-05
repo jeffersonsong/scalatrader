@@ -73,9 +73,9 @@ class MACD(params: Params) extends Algorithm {
              || isSellSignal(latestSignal, prevSignal)) } yield {
 
       if (isBuySignal(latestSignal, prevSignal))
-        BuySignal(symbol)
+        BuySignal()
       else
-        SellSignal(symbol)
+        SellSignal()
     }
   }
 

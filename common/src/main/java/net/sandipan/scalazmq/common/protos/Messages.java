@@ -1250,20 +1250,19 @@ public final class Messages {
     com.google.protobuf.ByteString
         getIdBytes();
 
-    // required string marketDataId = 2;
+    // required .marketdata.MarketData marketData = 2;
     /**
-     * <code>required string marketDataId = 2;</code>
+     * <code>required .marketdata.MarketData marketData = 2;</code>
      */
-    boolean hasMarketDataId();
+    boolean hasMarketData();
     /**
-     * <code>required string marketDataId = 2;</code>
+     * <code>required .marketdata.MarketData marketData = 2;</code>
      */
-    java.lang.String getMarketDataId();
+    net.sandipan.scalazmq.common.protos.Messages.MarketData getMarketData();
     /**
-     * <code>required string marketDataId = 2;</code>
+     * <code>required .marketdata.MarketData marketData = 2;</code>
      */
-    com.google.protobuf.ByteString
-        getMarketDataIdBytes();
+    net.sandipan.scalazmq.common.protos.Messages.MarketDataOrBuilder getMarketDataOrBuilder();
 
     // required .marketdata.Trade.Direction direction = 3;
     /**
@@ -1362,8 +1361,16 @@ public final class Messages {
               break;
             }
             case 18: {
+              net.sandipan.scalazmq.common.protos.Messages.MarketData.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = marketData_.toBuilder();
+              }
+              marketData_ = input.readMessage(net.sandipan.scalazmq.common.protos.Messages.MarketData.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(marketData_);
+                marketData_ = subBuilder.buildPartial();
+              }
               bitField0_ |= 0x00000002;
-              marketDataId_ = input.readBytes();
               break;
             }
             case 24: {
@@ -1552,47 +1559,26 @@ public final class Messages {
       }
     }
 
-    // required string marketDataId = 2;
-    public static final int MARKETDATAID_FIELD_NUMBER = 2;
-    private java.lang.Object marketDataId_;
+    // required .marketdata.MarketData marketData = 2;
+    public static final int MARKETDATA_FIELD_NUMBER = 2;
+    private net.sandipan.scalazmq.common.protos.Messages.MarketData marketData_;
     /**
-     * <code>required string marketDataId = 2;</code>
+     * <code>required .marketdata.MarketData marketData = 2;</code>
      */
-    public boolean hasMarketDataId() {
+    public boolean hasMarketData() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string marketDataId = 2;</code>
+     * <code>required .marketdata.MarketData marketData = 2;</code>
      */
-    public java.lang.String getMarketDataId() {
-      java.lang.Object ref = marketDataId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          marketDataId_ = s;
-        }
-        return s;
-      }
+    public net.sandipan.scalazmq.common.protos.Messages.MarketData getMarketData() {
+      return marketData_;
     }
     /**
-     * <code>required string marketDataId = 2;</code>
+     * <code>required .marketdata.MarketData marketData = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getMarketDataIdBytes() {
-      java.lang.Object ref = marketDataId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        marketDataId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public net.sandipan.scalazmq.common.protos.Messages.MarketDataOrBuilder getMarketDataOrBuilder() {
+      return marketData_;
     }
 
     // required .marketdata.Trade.Direction direction = 3;
@@ -1699,7 +1685,7 @@ public final class Messages {
 
     private void initFields() {
       id_ = "";
-      marketDataId_ = "";
+      marketData_ = net.sandipan.scalazmq.common.protos.Messages.MarketData.getDefaultInstance();
       direction_ = net.sandipan.scalazmq.common.protos.Messages.Trade.Direction.BUY;
       timestamp_ = "";
       algorithmId_ = "";
@@ -1713,7 +1699,7 @@ public final class Messages {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasMarketDataId()) {
+      if (!hasMarketData()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1729,6 +1715,10 @@ public final class Messages {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!getMarketData().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1740,7 +1730,7 @@ public final class Messages {
         output.writeBytes(1, getIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getMarketDataIdBytes());
+        output.writeMessage(2, marketData_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(3, direction_.getNumber());
@@ -1766,7 +1756,7 @@ public final class Messages {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getMarketDataIdBytes());
+          .computeMessageSize(2, marketData_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1888,6 +1878,7 @@ public final class Messages {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMarketDataFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1898,7 +1889,11 @@ public final class Messages {
         super.clear();
         id_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        marketDataId_ = "";
+        if (marketDataBuilder_ == null) {
+          marketData_ = net.sandipan.scalazmq.common.protos.Messages.MarketData.getDefaultInstance();
+        } else {
+          marketDataBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
         direction_ = net.sandipan.scalazmq.common.protos.Messages.Trade.Direction.BUY;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -1941,7 +1936,11 @@ public final class Messages {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.marketDataId_ = marketDataId_;
+        if (marketDataBuilder_ == null) {
+          result.marketData_ = marketData_;
+        } else {
+          result.marketData_ = marketDataBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -1975,10 +1974,8 @@ public final class Messages {
           id_ = other.id_;
           onChanged();
         }
-        if (other.hasMarketDataId()) {
-          bitField0_ |= 0x00000002;
-          marketDataId_ = other.marketDataId_;
-          onChanged();
+        if (other.hasMarketData()) {
+          mergeMarketData(other.getMarketData());
         }
         if (other.hasDirection()) {
           setDirection(other.getDirection());
@@ -2002,7 +1999,7 @@ public final class Messages {
           
           return false;
         }
-        if (!hasMarketDataId()) {
+        if (!hasMarketData()) {
           
           return false;
         }
@@ -2015,6 +2012,10 @@ public final class Messages {
           return false;
         }
         if (!hasAlgorithmId()) {
+          
+          return false;
+        }
+        if (!getMarketData().isInitialized()) {
           
           return false;
         }
@@ -2114,78 +2115,121 @@ public final class Messages {
         return this;
       }
 
-      // required string marketDataId = 2;
-      private java.lang.Object marketDataId_ = "";
+      // required .marketdata.MarketData marketData = 2;
+      private net.sandipan.scalazmq.common.protos.Messages.MarketData marketData_ = net.sandipan.scalazmq.common.protos.Messages.MarketData.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          net.sandipan.scalazmq.common.protos.Messages.MarketData, net.sandipan.scalazmq.common.protos.Messages.MarketData.Builder, net.sandipan.scalazmq.common.protos.Messages.MarketDataOrBuilder> marketDataBuilder_;
       /**
-       * <code>required string marketDataId = 2;</code>
+       * <code>required .marketdata.MarketData marketData = 2;</code>
        */
-      public boolean hasMarketDataId() {
+      public boolean hasMarketData() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required string marketDataId = 2;</code>
+       * <code>required .marketdata.MarketData marketData = 2;</code>
        */
-      public java.lang.String getMarketDataId() {
-        java.lang.Object ref = marketDataId_;
-        if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          marketDataId_ = s;
-          return s;
+      public net.sandipan.scalazmq.common.protos.Messages.MarketData getMarketData() {
+        if (marketDataBuilder_ == null) {
+          return marketData_;
         } else {
-          return (java.lang.String) ref;
+          return marketDataBuilder_.getMessage();
         }
       }
       /**
-       * <code>required string marketDataId = 2;</code>
+       * <code>required .marketdata.MarketData marketData = 2;</code>
        */
-      public com.google.protobuf.ByteString
-          getMarketDataIdBytes() {
-        java.lang.Object ref = marketDataId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          marketDataId_ = b;
-          return b;
+      public Builder setMarketData(net.sandipan.scalazmq.common.protos.Messages.MarketData value) {
+        if (marketDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          marketData_ = value;
+          onChanged();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          marketDataBuilder_.setMessage(value);
         }
-      }
-      /**
-       * <code>required string marketDataId = 2;</code>
-       */
-      public Builder setMarketDataId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        marketDataId_ = value;
-        onChanged();
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required string marketDataId = 2;</code>
+       * <code>required .marketdata.MarketData marketData = 2;</code>
        */
-      public Builder clearMarketDataId() {
+      public Builder setMarketData(
+          net.sandipan.scalazmq.common.protos.Messages.MarketData.Builder builderForValue) {
+        if (marketDataBuilder_ == null) {
+          marketData_ = builderForValue.build();
+          onChanged();
+        } else {
+          marketDataBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>required .marketdata.MarketData marketData = 2;</code>
+       */
+      public Builder mergeMarketData(net.sandipan.scalazmq.common.protos.Messages.MarketData value) {
+        if (marketDataBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              marketData_ != net.sandipan.scalazmq.common.protos.Messages.MarketData.getDefaultInstance()) {
+            marketData_ =
+              net.sandipan.scalazmq.common.protos.Messages.MarketData.newBuilder(marketData_).mergeFrom(value).buildPartial();
+          } else {
+            marketData_ = value;
+          }
+          onChanged();
+        } else {
+          marketDataBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>required .marketdata.MarketData marketData = 2;</code>
+       */
+      public Builder clearMarketData() {
+        if (marketDataBuilder_ == null) {
+          marketData_ = net.sandipan.scalazmq.common.protos.Messages.MarketData.getDefaultInstance();
+          onChanged();
+        } else {
+          marketDataBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
-        marketDataId_ = getDefaultInstance().getMarketDataId();
-        onChanged();
         return this;
       }
       /**
-       * <code>required string marketDataId = 2;</code>
+       * <code>required .marketdata.MarketData marketData = 2;</code>
        */
-      public Builder setMarketDataIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        marketDataId_ = value;
+      public net.sandipan.scalazmq.common.protos.Messages.MarketData.Builder getMarketDataBuilder() {
+        bitField0_ |= 0x00000002;
         onChanged();
-        return this;
+        return getMarketDataFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>required .marketdata.MarketData marketData = 2;</code>
+       */
+      public net.sandipan.scalazmq.common.protos.Messages.MarketDataOrBuilder getMarketDataOrBuilder() {
+        if (marketDataBuilder_ != null) {
+          return marketDataBuilder_.getMessageOrBuilder();
+        } else {
+          return marketData_;
+        }
+      }
+      /**
+       * <code>required .marketdata.MarketData marketData = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          net.sandipan.scalazmq.common.protos.Messages.MarketData, net.sandipan.scalazmq.common.protos.Messages.MarketData.Builder, net.sandipan.scalazmq.common.protos.Messages.MarketDataOrBuilder> 
+          getMarketDataFieldBuilder() {
+        if (marketDataBuilder_ == null) {
+          marketDataBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              net.sandipan.scalazmq.common.protos.Messages.MarketData, net.sandipan.scalazmq.common.protos.Messages.MarketData.Builder, net.sandipan.scalazmq.common.protos.Messages.MarketDataOrBuilder>(
+                  marketData_,
+                  getParentForChildren(),
+                  isClean());
+          marketData_ = null;
+        }
+        return marketDataBuilder_;
       }
 
       // required .marketdata.Trade.Direction direction = 3;
@@ -2405,12 +2449,13 @@ public final class Messages {
       "\n\016messages.proto\022\nmarketdata\"e\n\nMarketDa" +
       "ta\022\n\n\002id\030\001 \002(\t\022\016\n\006symbol\030\002 \002(\t\022\013\n\003bid\030\003 " +
       "\002(\t\022\013\n\003ask\030\004 \002(\t\022\016\n\006volume\030\005 \002(\005\022\021\n\ttime" +
-      "stamp\030\006 \002(\t\"\241\001\n\005Trade\022\n\n\002id\030\001 \002(\t\022\024\n\014mar" +
-      "ketDataId\030\002 \002(\t\022.\n\tdirection\030\003 \002(\0162\033.mar" +
-      "ketdata.Trade.Direction\022\021\n\ttimestamp\030\004 \002" +
-      "(\t\022\023\n\013algorithmId\030\005 \002(\t\"\036\n\tDirection\022\007\n\003" +
-      "BUY\020\000\022\010\n\004SELL\020\001B/\n#net.sandipan.scalazmq" +
-      ".common.protosB\010Messages"
+      "stamp\030\006 \002(\t\"\267\001\n\005Trade\022\n\n\002id\030\001 \002(\t\022*\n\nmar" +
+      "ketData\030\002 \002(\0132\026.marketdata.MarketData\022.\n" +
+      "\tdirection\030\003 \002(\0162\033.marketdata.Trade.Dire" +
+      "ction\022\021\n\ttimestamp\030\004 \002(\t\022\023\n\013algorithmId\030" +
+      "\005 \002(\t\"\036\n\tDirection\022\007\n\003BUY\020\000\022\010\n\004SELL\020\001B/\n" +
+      "#net.sandipan.scalazmq.common.protosB\010Me" +
+      "ssages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2428,7 +2473,7 @@ public final class Messages {
           internal_static_marketdata_Trade_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_marketdata_Trade_descriptor,
-              new java.lang.String[] { "Id", "MarketDataId", "Direction", "Timestamp", "AlgorithmId", });
+              new java.lang.String[] { "Id", "MarketData", "Direction", "Timestamp", "AlgorithmId", });
           return null;
         }
       };

@@ -22,10 +22,7 @@ class ComponentRegistry(config: Config)
 
   override val capturer = new TradeCapturer
 
-  override val repository = MongoPersistenceComponent.createMongoRepository[Trade](
-    config.getString("mongo.dbName"),
-    config.getString("mongo.collectionName")
-  )
+  override val repository = new MongoRepository()
 
   override val mongoClientProvider = new MongoClientProvider
 }

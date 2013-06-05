@@ -14,7 +14,7 @@ message MarketData {
 
 message Trade {
   required string id=1;
-  required string marketDataId=2;
+  required MarketData marketData=2;
   required Direction direction=3;
   required string timestamp=4;
   required string algorithmId=5;

@@ -10,6 +10,6 @@ class AlwaysBuy extends Algorithm {
 
   override val algorithmId: String = "AlwaysBuy"
 
-  override def submit(marketData: MarketData): Option[Signal] = Some(BuySignal(marketData.symbol))
+  override def submit(marketData: MarketData): Option[Signal] = Some(BuySignal())
 
 }

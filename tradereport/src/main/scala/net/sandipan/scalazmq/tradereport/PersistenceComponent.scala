@@ -8,7 +8,7 @@ trait PersistenceComponent[T <: Id[String]] {
 
   trait Repository {
     def persist(item: T)
-    def retrieve(id: T#Type): T
+    def retrieve(id: T#Type): Option[T]
   }
 
   class InMemoryRepository extends Repository {
@@ -21,7 +21,7 @@ trait PersistenceComponent[T <: Id[String]] {
       data += (item.id -> item)
     }
 
-    def retrieve(id: T#Type): T = data(id)
+    def retrieve(id: T#Type): Option[T] = data.get(id)
 
   }
 
