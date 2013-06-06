@@ -1,17 +1,14 @@
-package net.sandipan.scalazmq.messagebroker
+package net.sandipan.scalazmq.tradereport
 
 import com.typesafe.config.ConfigFactory
-import org.jeromq.ZMQ
 
 object Main extends App {
-
   val config = ConfigFactory.load()
   val registry = new ComponentRegistry(config)
 
   try {
-    registry.brokerComponent.start()
+    registry.capturer.startCapturing()
   } finally {
-    registry.brokerComponent.closeAllSockets()
+    registry.subscription.closeSocket()
   }
-
 }

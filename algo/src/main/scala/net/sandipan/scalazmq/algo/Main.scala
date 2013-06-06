@@ -2,18 +2,15 @@ package net.sandipan.scalazmq.algo
 
 import com.typesafe.config.ConfigFactory
 
-object Main {
+object Main extends App {
 
-  def main(args: Array[String]) {
-    val config = ConfigFactory.load()
-    val registry = new ComponentRegistry(config)
+  val config = ConfigFactory.load()
+  val registry = new ComponentRegistry(config)
 
-    try {
-      registry.runner.run()
-    } finally {
-      registry.subscription.closeSocket()
-    }
-
+  try {
+    registry.runner.run()
+  } finally {
+    registry.subscription.closeSocket()
   }
 
 }

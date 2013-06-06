@@ -2,6 +2,7 @@ package net.sandipan.scalazmq.tradereport
 
 import net.sandipan.scalazmq.common.model.Trade
 import net.sandipan.scalazmq.zmq.SubscriberComponent
+import net.sandipan.scalazmq.common.util.HasLogger
 
 trait TradeCaptureComponent {
   this: SubscriberComponent[Trade]
@@ -9,11 +10,12 @@ trait TradeCaptureComponent {
 
   def capturer: TradeCapturer
 
-  class TradeCapturer {
+  class TradeCapturer extends HasLogger {
 
     def startCapturing() {
+      log.info("Starting trade capture.")
       for (trade <- subscription.stream) {
-
+        repository.persist(trade)
       }
     }
 

@@ -11,9 +11,7 @@ trait SubscriberComponent[T] {
 
   def subscription: Subscription
 
-  class Subscription extends HasZmqSocket with HasLogger {
-
-    var subscribed: Boolean = false
+  class Subscription(implicit deserializer: Deserializer[T], topicResolver: Topic[T]) extends HasZmqSocket with HasLogger {
 
     lazy val address: String = config.getString("zmq.subscribeAddress")
 
@@ -22,20 +20,17 @@ trait SubscriberComponent[T] {
       val s = contextProvider.context.socket(ZMQ.SUB)
       if (!s.connect(address))
         throw new RuntimeException("Could not open ZMQ Socket to %s".format(address))
+      log.debug("Subscribing to topic %s".format(topicResolver.value))
+      s.subscribe(topicResolver.value)
       s
     }
 
-    def stream(implicit d: Deserializer[T], t: Topic[T]): Stream[T] = {
-      if (!subscribed) {
-        socket.subscribe(t.value())
-        subscribed = true
-      }
+    def stream: Stream[T] = {
       socket.recvMsg() // First part of message is the topic bytes, ignoring
       if (!socket.hasReceiveMore)
         throw new RuntimeException("No more data after topic...")
-      val typedItem = d.deserialize(socket.recv())
+      val typedItem = deserializer.deserialize(socket.recv())
       Stream.cons(typedItem, stream)
-
     }
 
   }

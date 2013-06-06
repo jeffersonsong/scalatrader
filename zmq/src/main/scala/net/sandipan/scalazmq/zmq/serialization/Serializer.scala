@@ -15,8 +15,8 @@ object Serializer {
     override def serialize(md: MarketData): Array[Byte] = md.toProto.toByteArray
   }
 
-  implicit object serializer extends Serializer[Trade] {
-    def serialize(trade: Trade): Array[Byte] = trade.toProto.toByteArray
+  implicit object tradeSerializer extends Serializer[Trade] {
+    override def serialize(trade: Trade): Array[Byte] = trade.toProto.toByteArray
   }
 
 }

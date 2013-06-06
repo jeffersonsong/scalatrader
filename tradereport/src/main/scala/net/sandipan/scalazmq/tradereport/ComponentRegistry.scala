@@ -22,7 +22,8 @@ class ComponentRegistry(config: Config)
 
   override val capturer = new TradeCapturer
 
-  override val repository = new MongoRepository()
-
   override val mongoClientProvider = new MongoClientProvider
+
+  override val repository = new MongoRepository
+
 }

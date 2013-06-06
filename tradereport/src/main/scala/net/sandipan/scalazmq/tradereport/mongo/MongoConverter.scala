@@ -15,7 +15,7 @@ object MongoConverter {
 
   implicit object tradeConvertor extends MongoConverter[Trade] {
     def convert(obj: Trade) = MongoDBObject(
-      "id" -> obj.id,
+      "_id" -> obj.id,
       "algorithmId" -> obj.algorithmId,
       "marketDataId" -> obj.marketData.id,
       "side" -> Signal.toProtoVal(obj.signal).toString,

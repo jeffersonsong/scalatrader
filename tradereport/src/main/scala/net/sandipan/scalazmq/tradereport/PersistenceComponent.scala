@@ -8,20 +8,15 @@ trait PersistenceComponent[T <: Id[String]] {
 
   trait Repository {
     def persist(item: T)
-    def retrieve(id: T#Type): Option[T]
   }
 
   class InMemoryRepository extends Repository {
-
-    type PersistenceNativeType = T
 
     private var data: Map[T#Type, T] = Map()
 
     def persist(item: T) {
       data += (item.id -> item)
     }
-
-    def retrieve(id: T#Type): Option[T] = data.get(id)
 
   }
 

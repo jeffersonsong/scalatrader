@@ -24,7 +24,7 @@ object Trade {
       msg.getTimestamp)
 
   implicit object persistableKey extends Persistable[Trade] {
-    val entityName: String = Trade.getClass.toString
+    val entityName: String = "trades"
   }
 
 }

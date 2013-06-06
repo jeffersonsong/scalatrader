@@ -36,9 +36,9 @@ class MACDSpec extends FunSpec with ShouldMatchers {
       signals should have size (2)
 
       indices(0) should equal (72)
-      signals(0) should equal (BuySignal("IBM"))
+      signals(0) should equal (BuySignal())
 
-      signals(1) should equal (SellSignal("IBM"))
+      signals(1) should equal (SellSignal())
       indices(1) should equal (40)
 
     }

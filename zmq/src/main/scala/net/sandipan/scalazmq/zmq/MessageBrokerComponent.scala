@@ -31,8 +31,8 @@ trait MessageBrokerComponent {
       if (xpubSocket.bind(xpubAddr) < 0)
         throw new RuntimeException("Broker could not open XPUB")
 
-      log.debug("CONNECT to " + xsubAddr)
-      if (!xsubSocket.connect(xsubAddr))
+      log.debug("BIND to " + xsubAddr)
+      if (xsubSocket.bind(xsubAddr) < 0)
         throw new RuntimeException("Broker could not open XSUB")
 
       val items = contextProvider.context.poller(2)

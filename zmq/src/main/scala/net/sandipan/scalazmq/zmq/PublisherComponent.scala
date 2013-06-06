@@ -1,6 +1,5 @@
 package net.sandipan.scalazmq.zmq
 
-import com.typesafe.config.Config
 import org.jeromq.ZMQ
 import net.sandipan.scalazmq.common.components.ConfigComponent
 import net.sandipan.scalazmq.common.util.HasLogger
@@ -17,13 +16,13 @@ trait PublisherComponent[T] {
 
     override val socket = {
       val s = contextProvider.context.socket(ZMQ.PUB)
-      if (s.bind(socketAddr) < 0)
+      if (!s.connect(socketAddr))
         throw new RuntimeException("Could not BIND to ZMQ socket %s".format(socketAddr))
       s
     }
 
     def publish(data: T)(implicit serializer: Serializer[T], topic: Topic[T]) {
-      if (!socket.sendMore(topic.value()))
+      if (!socket.sendMore(topic.value))
         log.error("Oops.. unable to send topic information.")
 
       if (!socket.send(serializer.serialize(data)))
