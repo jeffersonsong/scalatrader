@@ -21,7 +21,7 @@ trait AlgorithmRunnerComponent {
       val algorithmsPar = algorithms.par
       for {data <- subscription.stream
            algo <- algorithmsPar} {
-        log.debug("Processing: %s".format(data)) // Remove/comment this line during any performance tests!
+        // log.debug("Processing: %s".format(data)) // Remove/comment this line during any performance tests!
         algo.submit(data) match {
           case Some(signal) => {
             log.debug("Generating signal: %s".format(signal))
