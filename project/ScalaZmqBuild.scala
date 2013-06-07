@@ -29,7 +29,8 @@ object ScalaZmqBuild extends Build {
   val customAssemblySettings = assemblySettings ++ Seq(
     artifact in (Compile, assembly) ~= { art =>
       art.copy(`classifier` = Some("assembly"))
-    }
+    },
+    addArtifact(artifact in (Compile, assembly), assembly)
   )
 
   lazy val root = Project(
