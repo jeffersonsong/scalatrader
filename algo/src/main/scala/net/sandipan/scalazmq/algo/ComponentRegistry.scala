@@ -21,7 +21,11 @@ class ComponentRegistry(config: Config)
 
   override val contextProvider = ContextComponent.defaultContextProvider(config)
 
-  override def algorithms = List(MACD.fromConfig(config), new AlwaysBuy)
+  override def algorithms =
+    List(
+      MACD.fromConfig(config),
+      AlwaysBuy.fromConfig(config)
+    ).flatten
 
   override def runner = new AlgorithmRunner
 
@@ -30,4 +34,8 @@ class ComponentRegistry(config: Config)
   override val publisher = new Publisher
 
   override def timeService = new DefaultTimeService
+
+  private def isAlgoEnabled(a: Algorithm) =
+    config.getList("algorithm.enabled").contains(a.algorithmId)
+
 }

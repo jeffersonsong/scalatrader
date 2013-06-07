@@ -10,7 +10,7 @@ object Main extends App {
   try {
     registry.runner.run()
   } finally {
-    registry.subscription.closeSocket()
+    registry.subscription.closeAllSockets()
   }
 
 }

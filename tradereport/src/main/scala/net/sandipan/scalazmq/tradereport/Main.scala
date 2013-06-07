@@ -9,6 +9,6 @@ object Main extends App {
   try {
     registry.capturer.startCapturing()
   } finally {
-    registry.subscription.closeSocket()
+    registry.subscription.closeAllSockets()
   }
 }

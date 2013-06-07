@@ -1,8 +1,8 @@
-import de.johoop.jacoco4sbt._
 import de.johoop.jacoco4sbt.JacocoPlugin._
-import java.io.{InputStreamReader, BufferedReader, BufferedInputStream}
 import sbt._
 import Keys._
+import sbtassembly.Plugin._
+import AssemblyKeys._
 
 object ScalaZmqBuild extends Build {
 
@@ -24,6 +24,12 @@ object ScalaZmqBuild extends Build {
     organizationName := "net.sandipan"
   )
 
+  val customAssemblySettings = assemblySettings ++ Seq(
+    artifact in (Compile, assembly) ~= { art =>
+      art.copy(`classifier` = Some("assembly"))
+    }
+  )
+
   lazy val root = Project(
     id = "scalazmq-root",
     base = file("."),
@@ -35,7 +41,7 @@ object ScalaZmqBuild extends Build {
     base = file("./zmq"),
     settings = Project.defaultSettings ++ Seq(
       libraryDependencies ++= Seq("org.jeromq" % "jeromq" % jeroMqVersion),
-      generateProtoTask
+      version := "0.1"
     ),
     dependencies = Seq(common)
   )
@@ -43,14 +49,19 @@ object ScalaZmqBuild extends Build {
   val marketdata = Project(
     id = "marketdata",
     base = file("./marketdata"),
-    dependencies = Seq(common, zmq)
+    dependencies = Seq(common, zmq),
+    settings = Project.defaultSettings ++ customAssemblySettings ++ Seq(
+      version := "0.1"
+    )
   )
 
   val algo = Project(
     id = "algo",
     base = file("./algo"),
     dependencies = Seq(common, zmq),
-    settings = Project.defaultSettings ++ jacoco.settings
+    settings = Project.defaultSettings ++ jacoco.settings ++ customAssemblySettings ++ Seq(
+      version := "0.1"
+    )
   )
 
   val tradereport = Project(
@@ -60,14 +71,18 @@ object ScalaZmqBuild extends Build {
     settings = Project.defaultSettings ++ Seq(
       libraryDependencies ++= Seq(
         "org.mongodb" %% "casbah" % "2.6.1"
-      )
-    )
+      ),
+      version := "0.1"
+    ) ++ assemblySettings
   )
 
   val messagebroker = Project(
     id = "messagebroker",
     base = file("./messagebroker"),
-    dependencies = Seq(common, zmq)
+    dependencies = Seq(common, zmq),
+    settings = Project.defaultSettings ++ customAssemblySettings ++ Seq(
+      version := "0.1"
+    )
   )
 
   val common = Project(
@@ -78,24 +93,9 @@ object ScalaZmqBuild extends Build {
         "com.google.protobuf" % "protobuf-java" % googleProtoBufVersion,
         "org.joda" % "joda-convert" % "1.2",
         "joda-time" % "joda-time" % jodaTimeVersion
-      )
+      ),
+      version := "0.1"
     )
   )
-
-  /* Begone! Evil hackery lies here! */
-  val generateProto = TaskKey[Unit]("generate-protos", "Executes generate_protos.bat")
-  val generateProtoTask = generateProto := {
-    val cmd = java.lang.Runtime.getRuntime.exec("generate_protos.bat")
-    cmd.waitFor()
-
-    val stream = cmd.getInputStream
-    val buf = new BufferedReader(new InputStreamReader(stream))
-    var str: String = null
-    do {
-      str = buf.readLine()
-      if (str != null) println(str)
-    } while (str != null)
-
-  }
 
 }

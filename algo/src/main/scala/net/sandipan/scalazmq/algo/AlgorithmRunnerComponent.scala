@@ -18,9 +18,9 @@ trait AlgorithmRunnerComponent {
   class AlgorithmRunner extends HasLogger {
 
     def run() {
-      // TODO Parallelism - cannot just use par, need to protect access to the socket.
+      val algorithmsPar = algorithms.par
       for {data <- subscription.stream
-           algo <- algorithms} {
+           algo <- algorithmsPar} {
         log.debug("Processing: %s".format(data)) // Remove/comment this line during any performance tests!
         algo.submit(data) match {
           case Some(signal) => {

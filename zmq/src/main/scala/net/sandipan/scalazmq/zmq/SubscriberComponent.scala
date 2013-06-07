@@ -11,25 +11,28 @@ trait SubscriberComponent[T] {
 
   def subscription: Subscription
 
-  class Subscription(implicit deserializer: Deserializer[T], topicResolver: Topic[T]) extends HasZmqSocket with HasLogger {
+  class Subscription(implicit deserializer: Deserializer[T], topicResolver: Topic[T]) extends HasLogger with HasZmqSockets {
 
     lazy val address: String = config.getString("zmq.subscribeAddress")
 
-    lazy val socket: Socket = {
-      log.debug("Connecting to %s".format(address))
-      val s = contextProvider.context.socket(ZMQ.SUB)
-      if (!s.connect(address))
-        throw new RuntimeException("Could not open ZMQ Socket to %s".format(address))
-      log.debug("Subscribing to topic %s".format(topicResolver.value))
-      s.subscribe(topicResolver.value)
-      s
+    val socket = new ThreadLocal[Socket]() {
+      override def initialValue(): Socket = {
+        log.debug("Connecting to %s".format(address))
+        val s = contextProvider.context.socket(ZMQ.SUB)
+        if (!s.connect(address))
+          throw new RuntimeException("Could not open ZMQ Socket to %s".format(address))
+        log.debug("Subscribing to topic %s".format(topicResolver.value))
+        s.subscribe(topicResolver.value)
+        registerSocket(s)
+        s
+      }
     }
 
     def stream: Stream[T] = {
-      socket.recvMsg() // First part of message is the topic bytes, ignoring
-      if (!socket.hasReceiveMore)
+      socket.get.recvMsg() // First part of message is the topic bytes, ignoring
+      if (!socket.get.hasReceiveMore)
         throw new RuntimeException("No more data after topic...")
-      val typedItem = deserializer.deserialize(socket.recv())
+      val typedItem = deserializer.deserialize(socket.get.recv())
       Stream.cons(typedItem, stream)
     }
 

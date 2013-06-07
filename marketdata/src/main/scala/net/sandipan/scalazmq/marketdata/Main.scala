@@ -10,7 +10,7 @@ object Main extends App {
   try {
     registry.marketDataSender.startSendingData()
   } finally {
-    registry.publisher.closeSocket()
+    registry.publisher.closeAllSockets()
   }
 
 }
