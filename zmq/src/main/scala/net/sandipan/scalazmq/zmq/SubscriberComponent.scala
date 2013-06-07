@@ -13,9 +13,9 @@ trait SubscriberComponent[T] {
 
   class Subscription(implicit deserializer: Deserializer[T], topicResolver: Topic[T]) extends HasLogger with HasZmqSockets {
 
-    lazy val address: String = config.getString("zmq.subscribeAddress")
+    private lazy val address: String = config.getString("zmq.subscribeAddress")
 
-    val socket = new ThreadLocal[Socket]() {
+    private val socket = new ThreadLocal[Socket]() {
       override def initialValue(): Socket = {
         log.debug("Connecting to %s".format(address))
         val s = contextProvider.context.socket(ZMQ.SUB)
