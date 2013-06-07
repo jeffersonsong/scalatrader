@@ -21,7 +21,9 @@ object ScalaZmqBuild extends Build {
       "org.slf4j" % "slf4j-api" % slf4jVersion,
       "org.slf4j" % "slf4j-simple" % slf4jVersion
     ),
-    organizationName := "net.sandipan"
+    publishTo := Some(Resolver.file("file",  new File( "/home/srazzaque/software/sonatype-work/nexus/storage/sandipan" )) ),
+    organization := "net.sandipan.scalazmq",
+    publishMavenStyle := true
   )
 
   val customAssemblySettings = assemblySettings ++ Seq(
@@ -31,9 +33,12 @@ object ScalaZmqBuild extends Build {
   )
 
   lazy val root = Project(
-    id = "scalazmq-root",
+    id = "scalazmq",
     base = file("."),
-    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker)
+    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker),
+    settings = Project.defaultSettings ++ Seq(
+      version := "0.1"
+    )
   )
 
   val zmq = Project(
