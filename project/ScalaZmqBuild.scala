@@ -22,8 +22,7 @@ object ScalaZmqBuild extends Build {
       "org.slf4j" % "slf4j-simple" % slf4jVersion
     ),
     publishTo := Some(Resolver.file("file",  new File( "/home/srazzaque/software/sonatype-work/nexus/storage/sandipan" )) ),
-    organization := "net.sandipan.scalazmq",
-    publishMavenStyle := true
+    organization := "net.sandipan.scalazmq"
   )
 
   artifact in (Compile, assembly) ~= { art =>
