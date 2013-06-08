@@ -5,7 +5,7 @@ import com.typesafe.config.Config
 import net.sandipan.scalazmq.algo.MACD.Params
 
 /**
- * A simplified MACD. Note: for pedagogical purposes, the following dumbing down has taken place:
+ * A simplified MACD. For pedagogical purposes, the following dumbing down has taken place:
  * - Using simple moving averages rather than exponential moving averages
  * - Using best bid price only
  */
@@ -33,7 +33,9 @@ class MACD(params: Params) extends Algorithm {
                       y <- avg(params.sig, _.macd, _ => x)} yield (y)
     val difference = for {x <- macd
                           y <- signal} yield (x - y)
-    dataMap += data.symbol -> (DataPoint(data.bid, slowAverage, fastAverage, macd, signal, difference) :: symbolData)
+    synchronized {
+      dataMap += data.symbol -> (DataPoint(data.bid, slowAverage, fastAverage, macd, signal, difference) :: symbolData)
+    }
   }
 
   def averagePrice(symbolData: SymbolData, marketData: MarketData)(points: Int, f1: DataPoint => Option[Money], f2: MarketData => Money): Option[Money] = {
