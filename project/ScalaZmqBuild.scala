@@ -13,6 +13,8 @@ object ScalaZmqBuild extends Build {
   val typesafeConfigVersion = "1.0.1"
   val slf4jVersion = "1.7.5"
 
+  val distribution = TaskKey[File]("distribution", "Creates a distributable zip file in the target directory.")
+
   override val settings = super.settings ++ Seq(
     scalaVersion := scalaVersionNo,
     libraryDependencies ++= Seq(
@@ -21,7 +23,6 @@ object ScalaZmqBuild extends Build {
       "org.slf4j" % "slf4j-api" % slf4jVersion,
       "org.slf4j" % "slf4j-simple" % slf4jVersion
     ),
-    publishTo := Some(Resolver.file("file",  new File( "/home/srazzaque/software/sonatype-work/nexus/storage/sandipan" )) ),
     organization := "net.sandipan.scalazmq"
   )
 
@@ -32,9 +33,9 @@ object ScalaZmqBuild extends Build {
   val customAssemblySettings = assemblySettings ++ addArtifact(artifact in (Compile, assembly), assembly)
 
   lazy val root = Project(
-    id = "scalazmq",
+    id = "scalatrader",
     base = file("."),
-    aggregate = Seq(zmq, marketdata, algo, tradereport, messagebroker),
+    aggregate = Seq(zmq, marketdata, algo, tradecapture, messagebroker, dist),
     settings = Project.defaultSettings ++ Seq(
       version := "0.1"
     )
@@ -54,7 +55,7 @@ object ScalaZmqBuild extends Build {
     id = "marketdata",
     base = file("./marketdata"),
     dependencies = Seq(common, zmq),
-    settings = Project.defaultSettings ++ customAssemblySettings ++ Seq(
+    settings = Project.defaultSettings ++ Seq(
       version := "0.1"
     )
   )
@@ -63,14 +64,14 @@ object ScalaZmqBuild extends Build {
     id = "algo",
     base = file("./algo"),
     dependencies = Seq(common, zmq),
-    settings = Project.defaultSettings ++ jacoco.settings ++ customAssemblySettings ++ Seq(
+    settings = Project.defaultSettings ++ jacoco.settings ++ Seq(
       version := "0.1"
     )
   )
 
-  val tradereport = Project(
-    id = "tradereport",
-    base = file("./tradereport"),
+  val tradecapture = Project(
+    id = "tradecapture",
+    base = file("./tradecapture"),
     dependencies = Seq(common, zmq),
     settings = Project.defaultSettings ++ Seq(
       libraryDependencies ++= Seq(
@@ -84,7 +85,7 @@ object ScalaZmqBuild extends Build {
     id = "messagebroker",
     base = file("./messagebroker"),
     dependencies = Seq(common, zmq),
-    settings = Project.defaultSettings ++ customAssemblySettings ++ Seq(
+    settings = Project.defaultSettings ++ Seq(
       version := "0.1"
     )
   )
@@ -100,6 +101,46 @@ object ScalaZmqBuild extends Build {
       ),
       version := "0.1"
     )
+  )
+
+  val dist: Project = Project(
+    id = "scalatrader-dist",
+    base = file("./scalatrader-dist"),
+    settings = Project.defaultSettings ++ customAssemblySettings ++ Seq(
+      version := "0.1",
+
+      distribution <<= (AssemblyKeys.assembly, Keys.target, Keys.name, Keys.version, streams) map {
+        (a: File, t: File, n: String, v: String, s: TaskStreams) =>
+          // Inspiration: https://eknet.org/main/dev/sbt-create-distribution-zip.html
+          val distDir = t / (n + "-" + v)
+          val zipFile = t / (n + "-" + v + ".zip")
+          s.log.info("Creating distribution file: " + zipFile.getName)
+          IO.delete(distDir)
+          IO.delete(zipFile)
+
+          val bin = distDir / "bin"
+          IO.createDirectories(Seq(bin))
+
+          // Copy scripts
+          val scripts: File = dist.base / "src" / "main" / "scripts"
+          for (f <- scripts.listFiles) {
+            s.log.info("Including: " + f.getName)
+            IO.copyFile(f, bin / f.getName)
+          }
+          s.log.info("Including: " + a.getName)
+          IO.copyFile(a, bin / a.getName)
+
+          def entries(f: File): List[File] = f :: (if (f.isDirectory) IO.listFiles(f).toList.flatMap(entries(_)) else Nil)
+
+          // Create the zip file
+          IO.zip(entries(distDir).map(d => (d, d.getAbsolutePath.substring(distDir.getParent.length + 1))), zipFile)
+
+          s.log.info("Done creating distribution file! Located here: " + zipFile.getAbsoluteFile)
+
+          zipFile
+      }
+    ),
+    dependencies = Seq(algo, marketdata, tradecapture, messagebroker)
   )
 
 }

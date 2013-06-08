@@ -27,19 +27,19 @@ trait MessageBrokerComponent {
 
       log.info("Setting up message broker.")
 
-      log.debug("BIND to " + xpubAddr)
       if (xpubSocket.bind(xpubAddr) < 0)
         throw new RuntimeException("Broker could not open XPUB")
+      log.info("Listening for subscribers on " + xpubAddr)
 
-      log.debug("BIND to " + xsubAddr)
       if (xsubSocket.bind(xsubAddr) < 0)
         throw new RuntimeException("Broker could not open XSUB")
+      log.info("Listening for publishers on " + xsubAddr)
 
       val items = contextProvider.context.poller(2)
       items.register(xpubSocket, Poller.POLLIN)
       items.register(xsubSocket, Poller.POLLIN)
 
-      log.info("Starting message broker.")
+      log.info("Starting brokerage services.")
 
       while (!Thread.currentThread.isInterrupted) {
         items.poll()

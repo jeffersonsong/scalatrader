@@ -17,11 +17,11 @@ trait SubscriberComponent[T] {
 
     private val socket = new ThreadLocal[Socket]() {
       override def initialValue(): Socket = {
-        log.debug("Connecting to %s".format(address))
+        log.info("Connecting to %s".format(address))
         val s = contextProvider.context.socket(ZMQ.SUB)
         if (!s.connect(address))
           throw new RuntimeException("Could not open ZMQ Socket to %s".format(address))
-        log.debug("Subscribing to topic %s".format(topicResolver.value))
+        log.info("Subscribing to topic %s".format(topicResolver.value))
         s.subscribe(topicResolver.value)
         registerSocket(s)
         s
