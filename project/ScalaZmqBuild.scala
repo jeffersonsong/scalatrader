@@ -23,7 +23,7 @@ object ScalaZmqBuild extends Build {
       "org.slf4j" % "slf4j-api" % slf4jVersion,
       "org.slf4j" % "slf4j-simple" % slf4jVersion
     ),
-    organization := "net.sandipan.scalazmq"
+    organization := "net.sandipan.scalatrader"
   )
 
   artifact in (Compile, assembly) ~= { art =>

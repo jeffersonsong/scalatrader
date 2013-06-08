@@ -1,6 +1,6 @@
 package marketdata;
 
-option java_package = "net.sandipan.scalazmq.common.protos";
+option java_package = "net.sandipan.scalatrader.common.protos";
 option java_outer_classname = "Messages";
 
 message MarketData {
