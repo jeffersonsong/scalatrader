@@ -7,8 +7,6 @@ if [[ -z $JAVA_HOME ]]; then
     exit 1
 fi
 
-JAR_FILE=$(ls -1 $(dirname $0)/scalatrader-dist-*.jar | head -1)
-
 function usage_msg() {
     printf "Usage: %s: [options]\n" $0
     echo "Options available are:"
@@ -22,8 +20,9 @@ function usage_msg() {
 
 }
 
-MODE=""
+JAR_FILE=$(ls -1 $(dirname $0)/scalatrader-dist-*.jar | head -1)
 CONFIG_FILE=""
+MODE=""
 
 while getopts j:c:m: name
 do
