@@ -111,7 +111,9 @@ object ScalaTraderBuild extends Build {
 
       distribution <<= (AssemblyKeys.assembly, Keys.target, Keys.name, Keys.version, streams) map {
         (a: File, t: File, n: String, v: String, s: TaskStreams) =>
-          // Credit goes to: https://eknet.org/main/dev/sbt-create-distribution-zip.html
+
+          // Credit/inspiration: https://eknet.org/main/dev/sbt-create-distribution-zip.html
+
           val distDir = t / (n + "-" + v)
           val zipFile = t / (n + "-" + v + ".zip")
           s.log.info("Creating distribution file: " + zipFile.getName)
@@ -119,14 +121,23 @@ object ScalaTraderBuild extends Build {
           IO.delete(zipFile)
 
           val bin = distDir / "bin"
-          IO.createDirectories(Seq(bin))
+          val conf = distDir / "conf"
+          IO.createDirectories(Seq(bin, conf))
 
-          // Copy scripts
-          val scripts: File = dist.base / "src" / "main" / "scripts"
-          for (f <- scripts.listFiles) {
-            s.log.info("Including: " + f.getName)
-            IO.copyFile(f, bin / f.getName)
+          def copyFiles(targetDir: File, destDir: File) {
+            for (f <- targetDir.listFiles) {
+              s.log.info("Including: " + f.getName)
+              IO.copyFile(f, destDir / f.getName)
+            }
           }
+
+          // Copy scripts and config
+          val scripts: File = dist.base / "src" / "main" / "scripts"
+          val config: File = dist.base / "src" / "main" / "conf"
+          copyFiles(scripts, bin)
+          copyFiles(config, conf)
+
+          // Copy assembly
           s.log.info("Including: " + a.getName)
           IO.copyFile(a, bin / a.getName)
 
