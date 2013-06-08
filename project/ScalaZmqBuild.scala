@@ -111,7 +111,7 @@ object ScalaZmqBuild extends Build {
 
       distribution <<= (AssemblyKeys.assembly, Keys.target, Keys.name, Keys.version, streams) map {
         (a: File, t: File, n: String, v: String, s: TaskStreams) =>
-          // Inspiration: https://eknet.org/main/dev/sbt-create-distribution-zip.html
+          // Credit goes to: https://eknet.org/main/dev/sbt-create-distribution-zip.html
           val distDir = t / (n + "-" + v)
           val zipFile = t / (n + "-" + v + ".zip")
           s.log.info("Creating distribution file: " + zipFile.getName)
