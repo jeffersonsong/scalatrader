@@ -7,18 +7,18 @@ import AssemblyKeys._
 object ScalaTraderBuild extends Build {
 
   val jeroMqVersion = "0.2.0"
-  val scalaVersionNo = "2.10.0"
-  val jodaTimeVersion = "2.1"
+  val scalaVersionNo = "2.10.4"
+  val jodaTimeVersion = "2.5"
   val googleProtoBufVersion = "2.5.0"
   val typesafeConfigVersion = "1.0.1"
-  val slf4jVersion = "1.7.5"
+  val slf4jVersion = "1.7.7"
 
   val distribution = TaskKey[File]("distribution", "Creates a distributable zip file in the target directory.")
 
   override val settings = super.settings ++ Seq(
     scalaVersion := scalaVersionNo,
     libraryDependencies ++= Seq(
-      "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
+      "org.scalatest" % "scalatest_2.10" % "2.2.2" % "test",
       "com.typesafe" % "config" % typesafeConfigVersion,
       "org.slf4j" % "slf4j-api" % slf4jVersion,
       "org.slf4j" % "slf4j-simple" % slf4jVersion
@@ -96,7 +96,7 @@ object ScalaTraderBuild extends Build {
     settings = Project.defaultSettings ++ Seq(
       libraryDependencies ++= Seq(
         "com.google.protobuf" % "protobuf-java" % googleProtoBufVersion,
-        "org.joda" % "joda-convert" % "1.2",
+        "org.joda" % "joda-convert" % "1.7",
         "joda-time" % "joda-time" % jodaTimeVersion
       ),
       version := "0.1"
