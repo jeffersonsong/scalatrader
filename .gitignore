@@ -14,3 +14,6 @@ broker/.cache
 marketdata/.cache
 tradereport/.cache
 zmq/.cache
+*/.classpath
+*/.project
+*/.settings
