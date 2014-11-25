@@ -11,8 +11,10 @@ class ComponentRegistry(config: Config)
   with SubscriberComponent[Trade]
   with ConfigComponent
   with ContextComponent
+  with PersistenceComponent[Trade]
+  /*
   with MongoPersistenceComponent[Trade]
-  with MongoClientComponent {
+  with MongoClientComponent*/ {
 
   override val subscription = new Subscription
 
@@ -22,8 +24,8 @@ class ComponentRegistry(config: Config)
 
   override val capturer = new TradeCapturer
 
-  override val mongoClientProvider = new MongoClientProvider
+  //override val mongoClientProvider = new MongoClientProvider
 
-  override val repository = new MongoRepository
-
+  // override val repository = new MongoRepository
+  override val repository = new InMemoryRepository
 }

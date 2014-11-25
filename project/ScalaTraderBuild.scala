@@ -21,7 +21,8 @@ object ScalaTraderBuild extends Build {
       "org.scalatest" % "scalatest_2.10" % "2.2.2" % "test",
       "com.typesafe" % "config" % typesafeConfigVersion,
       "org.slf4j" % "slf4j-api" % slf4jVersion,
-      "org.slf4j" % "slf4j-simple" % slf4jVersion
+      "ch.qos.logback" % "logback-core" % "1.1.2",
+      "ch.qos.logback" % "logback-classic" % "1.1.2"	  
     ),
     organization := "net.sandipan.scalatrader"
   )
